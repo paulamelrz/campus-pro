@@ -21,15 +21,15 @@ class TutorLoginController extends Controller
     public function login(Request $request){
         //validate form data
         $this->validate($request, [
-            'email'=> 'required|email', 
-            'password' => 'required|min:8']);
+            'tutor-email'=> 'required|email', 
+            'tutor-password' => 'required|min:8']);
         
          //if login is successful, then redirect to wherever user wanted to go (intended)
-        if(Auth::guard('tutor')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)){
+        if(Auth::guard('tutor')->attempt(['tutor-email' => $request->email, 'tutor-password' => $request->password], $request->remember)){
             return redirect()->intended(route('tutor'));
         }
         //if unsuccessful redirect back to login with form data
-        return redirect()->back()->withInput($request->only('email', 'remember'));//withInput autofills forms
+        return redirect()->back()->withInput($request->only('tutor-email', 'remember'));//withInput autofills forms
         
         return true;
     }
