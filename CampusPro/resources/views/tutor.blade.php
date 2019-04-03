@@ -47,7 +47,7 @@
                     <div class="col-md-3 mb-3">
                                 
                         <div class="card h-100">
-                         <img class="card-img-top" src="http://placehold.it/300x200" alt="channel thumbnail">
+                         <img class="card-img-top" src="images/thumbnail.png" alt="channel thumbnail">
                             <div class="card-body">
                                 <div class="card-title">
                                     <a href="{{route('channel.page', $channel->channel_id)}}">{{$channel->channel_name}}</a>
