@@ -76,7 +76,7 @@ class ChannelController extends Controller
         }
         else
         {
-            return redirect()->back()->with('error', 'The course code does not exist. Press "create course" to add it to our records!');
+            return redirect()->back()->with('error', 'The course code does not exist. Click <a href="/course"> here </a> to add it to our records!');
         }
 /*
         $validated = $request->validated();
@@ -117,7 +117,7 @@ class ChannelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ChannelCreateRequest $request, $id) //update record
+    public function update(Request $request, $id) //update record
     {
         //
     }
