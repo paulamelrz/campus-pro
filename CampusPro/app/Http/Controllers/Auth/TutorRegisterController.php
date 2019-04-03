@@ -1,4 +1,4 @@
-tut-reg-<?php
+<?php
 
 namespace App\Http\Controllers\Auth;
 

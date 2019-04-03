@@ -41,7 +41,7 @@
                         <div class="col-sm">
                             <div class="card">
                                 <div class="card-header">
-                                    {{$channel->channel_name}}
+                                    <a href="/channel-page{$channel->id}">{{$channel->channel_name}}</a>
                                 </div>
                                 <div class="card-body">
                                     {{$channel->description}}
