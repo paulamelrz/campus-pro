@@ -52,9 +52,9 @@ class TutorRegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'tutRegname' => ['required', 'string', 'max:255'],
-            'tutRegemail' => ['required', 'string', 'email', 'max:255', 'unique:tutors'],
-            'tutRegpassword' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:tutors'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -75,9 +75,9 @@ class TutorRegisterController extends Controller
         $this->validator($data->all())->validate();
         
         Tutor::create([
-            'name' => $data['tutRegname'],
-            'email' => $data['tutRegemail'],
-            'password' => Hash::make($data['tutRegpassword']),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
 
         return redirect()->intended(route('tutor.login'));

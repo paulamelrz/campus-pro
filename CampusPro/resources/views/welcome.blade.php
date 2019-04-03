@@ -45,15 +45,15 @@
                             Login
                           </a>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#login-modal1">As Student</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#login-modal2">As Tutor</a>
+                            <a class="dropdown-item" href="/login">As Student</a>
+                            <a class="dropdown-item" href="{{route('tutor.login')}}">As Tutor</a>
                           </div>
                     </li> 
                     <li class="nav-item">
                          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Register</a>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#register-modal1">As Student</a>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#register-modal2">As Tutor</a>
+                            <a class="dropdown-item" href="/register">As Student</a>
+                            <a class="dropdown-item" href="{{route('tutor.register')}}">As Tutor</a>
                           </div>
                     </li>             
                   </ul>
