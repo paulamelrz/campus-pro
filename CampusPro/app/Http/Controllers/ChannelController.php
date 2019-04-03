@@ -58,10 +58,10 @@ class ChannelController extends Controller
 
         //check if course_code entered is in the courses table. If not, create course record.
 
-        $uni_id = University::where('uni_name', $request["university"])->first();
-       // dd($uni_id);
+        $uni_id = University::where('uni_name', '=', $request["university"])->first();
+      // dd($uni_id);
         $course_rec = Course::where('course_code', $request->course_code)->where('uni_id', $uni_id->id)->first();
-
+      //  dd($course_rec);
 
         if(isset($course_rec))
         {
