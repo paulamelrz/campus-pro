@@ -95,7 +95,8 @@ class ChannelController extends Controller
      */
     public function show($id) //displays db record
     {
-        //
+        // $channel_rec = Channel::where('channel_id', $id);
+        // return view('/tutor-channel', compact('channel_rec'));
     }
 
     /**

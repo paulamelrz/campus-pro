@@ -29,7 +29,7 @@ Route::prefix('tutor')->group(function(){
 
 });
 Route::get('/course', 'CourseController@index');
-Route::get('/channel-page{$id}', 'ChannelController@show');
+//Route::get('/channel-page{id}', 'ChannelController@show')->name('channel.page');
 
 Route::post('/create-channel', 'ChannelController@store');
 Route::post('/create-course', 'CourseController@store');

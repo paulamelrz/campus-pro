@@ -38,10 +38,11 @@
                 <div class="row">
 
                     @foreach($channels as $channel)
+                    <!-- {{route('channel.page', $channels->channel_id)}} -->
                         <div class="col-sm">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="/channel-page{$channel->id}">{{$channel->channel_name}}</a>
+                                    <a href="">{{$channel->channel_name}}</a>
                                 </div>
                                 <div class="card-body">
                                     {{$channel->description}}
