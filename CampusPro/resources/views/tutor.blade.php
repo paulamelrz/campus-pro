@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Tutor Dashboard')
+
 @section('content')<script type="text/javascript">
     $(document).ready(function(){
         $("#mybtn").click(function(){
@@ -18,6 +20,27 @@
     </script>
 @endif
 
+<div class="container tutprofcont">
+    <div class="row">
+        <div class = "col-sm-4">
+            <div class="tutprofpic">
+                <img src="{{ asset('images/math.png') }}" alt="Profile Picture">
+            </div>
+        </div>
+
+        <div class = "col-sm-5">
+            <h2>Name</h2>
+            <h3>University</h3>
+            <p> Hello my name is Tummika, I attend the university of the west indies cave hill campus and i am pursuing a degree 
+                in computer science. Please do my course, I need money :). </p>
+
+        </div>
+
+        <div class="col-sm-3">
+        
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -60,6 +83,13 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
 <!--Create Channel Modal -->
 <div class="modal fade" id="create-channel">
     <div class="modal-dialog  modal-dialog-centered modal-lg">
