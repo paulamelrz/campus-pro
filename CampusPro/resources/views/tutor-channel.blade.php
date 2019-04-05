@@ -59,26 +59,57 @@
                 <!-- Content Tab -->
                 <div id="content" class="tab-pane fade in active">
                     <h4>Content</h4><br>
+                    <!--
+                        1. Tutor can create topics 
+                        2. Tutor can add text, video, img, links under each topic
+                        3. Student can view content and navigate by topic.
+                    -->
                 </div>
 
                 <!-- Tutorials Feed Tab -->
                 <div id="tutorials" class="tab-pane fade in active">
                     <h4>Tutorials Feed</h4><br>
+                    <!--
+                    1. Posts made by tutor ordered by most recent to least recent. 
+                    2. Students can comment/like
+                    3. Sorted by tags? 
+
+                    -->
                 </div>
 
                 <!-- Resource Hub Tab -->
                 <div id="resource" class="tab-pane fade in active">
                     <h4>Resource Hub</h4><br>
+                    <!--
+                    1. Students and tutors can make posts
+                    2. Posts ordered by date(in a feed) and tags
+                    3. Students and tutors can comment, flag.
+                    4. Tutors can remove any posts.
+
+                    -->
                 </div>
 
                 <!-- Dicussions Tab -->
                 <div id="discussions" class="tab-pane fade in active">
                     <h4>Discussions</h4><br>
+                    <!--
+                        1. Forum threads (topics) -> both students and tutors can create a thread
+                        2. Forum posts + comments under each
+                        3. Student can like or flag
+                        4. Tutor can like, flag, remove any comment
+
+                    -->
                 </div>
 
                 <!-- Info Tab -->
                 <div id="info" class="tab-pane fade in active">
                     <h4>Channel Info</h4><br>
+                    <!--
+                    
+                    1. Display channel description. Allow tutor to edit
+                    2. Display list of enrolled students
+
+                    -->
                 </div>
             </div>
         </div>
