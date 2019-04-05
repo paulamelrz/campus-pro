@@ -9,7 +9,7 @@
         });
     });
 </script>
-@if (session('error'))
+@if (session('error')||session('success'))
     <script type="text/javascript">
         $(function() {
             $('#create-channel').modal('show');

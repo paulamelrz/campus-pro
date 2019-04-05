@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/student-profile';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -49,9 +49,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'stuRegname' => ['required', 'string', 'max:255'],
-            'stuRegemail' => ['required', 'string', 'email', 'max:255', 'unique:students'],
-            'stuRegpassword' => ['required', 'string', 'min:8', 'confirmed'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:students'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -63,11 +63,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $email = $data['stuRegemail'];
         return User::create([
-            'name' => $data['stuRegname'],
-            'email' => $email,
-            'password' => Hash::make($data['stuRegpassword']),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
     }
 }
