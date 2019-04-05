@@ -58,10 +58,10 @@ class ChannelController extends Controller
 
         //check if course_code entered is in the courses table. If not, create course record.
 
-        $uni_id = University::where('uni_name', $request["university"])->first();
-       // dd($uni_id);
+        $uni_id = University::where('uni_name', '=', $request["university"])->first();
+      // dd($uni_id);
         $course_rec = Course::where('course_code', $request->course_code)->where('uni_id', $uni_id->id)->first();
-
+      //  dd($course_rec);
 
         if(isset($course_rec))
         {
@@ -76,7 +76,7 @@ class ChannelController extends Controller
         }
         else
         {
-            return redirect()->back()->with('error', 'The course code does not exist. Press "create course" to add it to our records!');
+            return redirect()->back()->with('error', 'The course code does not exist. Click <a href="/course"> here </a> to add it to our records!');
         }
 /*
         $validated = $request->validated();
@@ -95,7 +95,8 @@ class ChannelController extends Controller
      */
     public function show($id) //displays db record
     {
-        //
+        $channel_rec = Channel::where('channel_id', $id)->first();
+        return view('/tutor-channel', compact('channel_rec'));
     }
 
     /**
@@ -116,7 +117,7 @@ class ChannelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ChannelCreateRequest $request, $id) //update record
+    public function update(Request $request, $id) //update record
     {
         //
     }

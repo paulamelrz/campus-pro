@@ -14,9 +14,7 @@
         $(function() {
             $('#create-channel').modal('show');
         });
-        $(document).ready(function(){
-            $("#create-course").show();
-        });
+       
     </script>
 @endif
 
@@ -44,45 +42,58 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-
-                <div class="card-header float-sm-right">TUTOR Dashboard
-
+        <div class="col-md-10">
+            <div class="media border p-3">
+                <img src="images/profile.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+                <div class="media-body">
+                    <h4>{{Auth::user()->name}} @if(Auth::user()->verified == 1)<img src="images/verified.png" style="width:30px;">@endif</h4>
+                    <p class="fa fa-envelope">{{Auth::user()->email}}</p>
                 </div>
-
-                <div class="card-body">
-                    Welcome back <strong> {{Auth::user()->name}}
-
-                    </strong>!
-                </div>
-            </div><br><br>
-            <div class="card">
-                <div class="row">
-
-                    @foreach($channels as $channel)
-                        <div class="col-sm">
-                            <div class="card">
-                                <div class="card-header">
-                                    {{$channel->channel_name}}
-                                </div>
-                                <div class="card-body">
-                                    {{$channel->description}}
-                                </div>
-                            </div>
-
-                        </div>
-                    @endforeach
-
-                </div><br>
-                <a data-toggle="modal" data-target="#create-channel" style="width:200px;" type="submit" class="btn btn-primary">
-                    {{ __('Create Channel') }}
-                </a>
-
             </div>
+            </div><br><br>
         </div>
     </div>
 </div>
+            
+<div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-10">
+        <h4>My Channels</h4>
+        <div class="card" style="">
+            <a data-toggle="modal" data-target="#create-channel" style="width:200px;" type="submit" class="btn btn-success">
+                    {{ __('Create Channel') }}
+            </a>
+            <div class="row">
+                
+                @foreach($channels as $channel)
+                                
+                    <div class="col-md-3 mb-3">
+                                
+                        <div class="card h-100">
+                         <img class="card-img-top" src="images/thumbnail.png" alt="channel thumbnail">
+                            <div class="card-body">
+                                <div class="card-title">
+                                    <a href="{{route('channel.page', $channel->channel_id)}}">{{$channel->channel_name}}</a>
+                               </div>
+                                <div class="card-text">
+                                    <p>{{$channel->description}}</p>
+                                </div>
+                            </div>
+                           
+                            <div class="card-footer">
+                                                
+                            </div>
+                        </div>
+                    </div>           
+                @endforeach
+                    
+            </div><br>
+            
+        </div>
+        </div>
+    </div>
+</div>
+<<<<<<< HEAD
 
 
 
@@ -90,6 +101,9 @@
 
 
 
+=======
+ 
+>>>>>>> 8a3a22b629dc1fa3f175f1f3ceb330d577b98209
 <!--Create Channel Modal -->
 <div class="modal fade" id="create-channel">
     <div class="modal-dialog  modal-dialog-centered modal-lg">
@@ -109,7 +123,7 @@
                 @endif
                 @if (session('error'))
                     <div class="alert alert-danger" role="alert">
-                        {{ session()->get('error')}}
+                        {!! session()->get('error') !!}
                     </div>
                 @endif
                 <form method="post" action="/create-channel">
@@ -137,9 +151,7 @@
                     <input type="submit" class="btn btn-success" value="Submit"/>
 
                 </form>
-                <a href="/course" id="create-course" style="width:200px; display:none; float:right;" class="btn btn-primary">
-                    {{ __('Create Course') }}
-                </a>
+               
             </div>
 
             <!-- Modal Footer -->
