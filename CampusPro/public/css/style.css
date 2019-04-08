@@ -35,6 +35,55 @@ nav
 {
     color: #FF243A !important;
 }
+.nav-buttons
+{
+    float:right;
+    margin-top:6px;
+    margin-right:50px;
+    padding-top:10px;
+}
+
+.nav-button1
+{
+    float: right;
+    margin-top:20px;
+    margin-right:50px;
+    color:dodgerblue;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.nav-button2
+{
+    float: right;
+    margin-top:20px;
+    margin-right:20px;
+    color:dodgerblue;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
+    font-size: 15px; 
+    font-weight: bold;
+}
+
+.nav-button:hover
+{
+    color:white;
+    background-color: cornflowerblue;
+}
+
+.reg-button
+{
+    float: right;
+    background-color:dodgerblue !important;
+    margin-top:15px;
+    margin-right:0px;
+    color:white;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif !important;
+    border:none;
+    padding: 7px 15px;
+    text-decoration: none;
+    font-size: 15px !important;
+}
 
 .dropdown-menu
 {
@@ -43,9 +92,9 @@ nav
 }
 
 
-/******Home*******/
+/*Home*/
 
-/* Row 1 */
+
 .row1
 {
     margin-top: 0px !important;
@@ -94,7 +143,7 @@ nav
 }
 
 
-/* Row2 */
+/* Home - row2 */
 
 .row2
 {
@@ -119,7 +168,7 @@ nav
     margin-right:10px;
 }
 
-/* Row3 */
+/* Home - row3 */
 
 .row3
 {
@@ -166,7 +215,7 @@ hr
 
 
 
-/*Form Pages*/
+/*Login Pages*/
 
 
 .loginbody

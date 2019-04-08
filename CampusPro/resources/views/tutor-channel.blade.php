@@ -11,12 +11,12 @@
 
 <div class="container">
     <header class="bg-secondary align-items-center">
-        <img style="height:auto; width:100%;"src="images/banner.png">
+        <img style="height:auto; width:100%;" src="images/banner.png">
     </header>
     <div class="jumbotron">
         <div class="row">
             <div class="col-2">
-                <img src="images/profile.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:90px; float:left;">
+                <img src="images/profile.png" alt="Channel thumbnail" class="mr-3 mt-3 rounded-circle" style="width:90px; float:left;">
             </div>
             <div class="col-8">
                 <h2 class="float:right; ">{{$channel_rec->channel_name}}</h2>
@@ -48,22 +48,54 @@
           <li class="nav-item">
              <a class="nav-link scroll" href="#discussions">Discussions</a>
           </li>
+           <li class="nav-item">
+             <a class="nav-link scroll" href="#reviews">Reviews</a>
+          </li>
           <li class="nav-item">
              <a class="nav-link scroll" href="#info">info</a>
           </li>
+         
     </ul>   
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-11">
+        <div class="col-md-12">
             <div class="tab-content"><br>      
                 <!-- Content Tab -->
-                <div id="content" class="tab-pane fade in active">
-                    <h4>Content</h4><br>
+                <div id="content" class="tab-pane fade in active container-fluid">
                     <!--
                         1. Tutor can create topics 
                         2. Tutor can add text, video, img, links under each topic
                         3. Student can view content and navigate by topic.
                     -->
+                    <div class="row">
+                        
+                    <!-- Topics sidebar -->
+                        <div class="col-md-3">
+                            <div class="card mb-2">
+                                <div style="color:white;" class="card-header bg-dark">
+                                    <h5>Topics</h5>
+                                </div>
+                                    <div class="card-header">
+                                        <a class="card-link" href="#">Topic 1</a>
+                                    </div>
+                                    <div class="card-header">
+                                        <a class="card-link" href="#">Topic 2</a>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <!-- Topic Content -->
+                        <div class="col-md-9">
+                        <div class="card mb-2">
+                                <div class="card-header">
+                                    <h5>Topic title goes here</h5>
+                                </div>
+                                <div class="card-body">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Tutorials Feed Tab -->
