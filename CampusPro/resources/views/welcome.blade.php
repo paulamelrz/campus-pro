@@ -1,368 +1,8 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <title>Quwius</title>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-           
-			  <!-- Latest compiled and minified CSS -->
-			  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-			  <link rel="stylesheet" href="css/style.css">
-			  <!--Font Awesome Icons-->
-			  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-			  <!-- jQuery library -->
-			  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-			  <!-- Popper JS -->
-			  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-			  <!-- Latest compiled JavaScript -->
-			  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-         
-    </head>
-    <body> 
-    <!--Navigation Bar-->          
-         <nav class="navbar navbar-expand-md navbar-light fixed-top">     
-            <a class="navbar-brand" href="#">
-                <img id=logo alt="Logo" class="logo" src="images/logo.png">
-            </a>
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#collapseNav">
-                   <span class="navbar-toggler-icon"></span>
-            </button>
-             <div class="collapse navbar-collapse" id="collapseNav">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link scroll" href="index.php?controller=Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link scroll"href="index.php?controller=Courses">Channels</a>
-                    </li>
-                     <li class="nav-item">
-                       <a class="nav-link scroll" href="index.php?controller=Tutors">Tutors</a>
-                     </li>
-                 </ul>
-                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Login
-                          </a>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/login">As Student</a>
-                            <a class="dropdown-item" href="{{route('tutor.login')}}">As Tutor</a>
-                          </div>
-                    </li> 
-                    <li class="nav-item">
-                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Register</a>
-                          <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/register">As Student</a>
-                            <a class="dropdown-item" href="{{route('tutor.register')}}">As Tutor</a>
-                          </div>
-                    </li>             
-                  </ul>
-             </div>
-         </nav>
+@extends('layouts.app')
 
-            <!-- Pop-up forms-->
-			
-			<!--Popup Login for Student-->
-            <div class="modal fade" id="login-modal1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-						  <h4 class="modal-title">Login as Student</h4>
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">      
-                        <form method="POST" action="{{ route('login') }}">
-                        @csrf
+@section('title', 'Home')
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                        </div>
-                      </div>
-                </div>
-            </div>
-			
-			<!--Popup Login for Tutor-->
-			<div class="modal fade" id="login-modal2">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-						  <h4 class="modal-title">Login as Tutor</h4>
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">      
-                        <form method="POST" action="{{ route('tutor.login.submit') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="tutorEmail" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="tutorEmail" type="email" class="form-control{{ $errors->has('tutorEmail') ? ' is-invalid' : '' }}" name="tutorEmail" value="{{ old('tutorEmail') }}" required autofocus>
-
-                                @if ($errors->has('tutorEmail'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tutorEmail') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="tutorPassword" type="password" class="form-control{{ $errors->has('tutorPassword') ? ' is-invalid' : '' }}" name="tutorPassword" required>
-
-                                @if ($errors->has('tutorPassword'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tutorPassword') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                        </div>
-                      </div>
-                </div>
-            </div>
-
-            
-			
-            <!-- Pop-up form for student registration-->
-            <div class="modal fade" id="register-modal1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-						<h4 class="modal-title">Register as a Student</h4>
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            
-                            <div class="form">
-                            <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="stuRegname" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="stuRegname" type="text" class="form-control{{ $errors->has('stuRegname') ? ' is-invalid' : '' }}" name="stuRegname" value="{{ old('stuRegname') }}" required autofocus>
-
-                                @if ($errors->has('stuRegname'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('stuRegname') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="stuRegemail" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="stuRegemail" type="email" class="form-control{{ $errors->has('stuRegemail') ? ' is-invalid' : '' }}" name="stuRegemail" value="{{ old('stuRegemail') }}" required>
-
-                                @if ($errors->has('stuRegemail'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('stuRegemail') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="stuRegpassword" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="stuRegpassword" type="password" class="form-control{{ $errors->has('stuRegpassword') ? ' is-invalid' : '' }}" name="stuRegpassword" required>
-
-                                @if ($errors->has('stuRegpassword'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('stuRegpassword') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
-         <!-- Pop-up form for tutor registration-->
-            <div class="modal fade" id="register-modal2" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-						<h4 class="modal-title">Register as a Tutor</h4>
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form">
-                            <form method="POST" action="{{ route('tutor.register.submit') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="tut-reg-name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="tut-reg-name" type="text" class="form-control{{ $errors->has('tut-reg-name') ? ' is-invalid' : '' }}" name="tut-reg-name" value="{{ old('tut-reg-name') }}" required autofocus>
-
-                                @if ($errors->has('tut-reg-name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tut-reg-name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="tut-reg-email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="tut-reg-email" type="email" class="form-control{{ $errors->has('tut-reg-email') ? ' is-invalid' : '' }}" name="tut-reg-email" value="{{ old('tut-reg-email') }}" required>
-
-                                @if ($errors->has('tut-reg-email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tut-reg-email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="tut-reg-password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="tut-reg-password" type="password" class="form-control{{ $errors->has('tut-reg-password') ? ' is-invalid' : '' }}" name="tut-reg-password" required>
-
-                                @if ($errors->has('tut-reg-password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('tut-reg-password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        
+@section('content')
         
         <!-- Row 1 Content-->
         <div class="container-fluid row1">
@@ -398,25 +38,174 @@
         </div>
         
         <!--Row 3 Content-->
-        <div class="container-fluid row3">
-            <h3 class="row3-head">What's Popular</h1>
-            <hr width="50%">
-            <div class="d-flex justify-content-around  mb-3">
-                <div class="p-3 slides ">
-                    <img src="images/accounts.jpg" alt="Snow" style="width:100%; height:100%;">
-                    <div class="slide-text">Accouting</div>
-                </div>
-                <div class="p-2  slides offset-sm-1">
-                    <img src="images/compsci.jpg" alt="Snow" style="width:100%; height:100%;">
-                    <div class="slide-text">Programming</div>
-                </div>
-                <div class="p-2  slides offset-sm-1">
-                    <img src="images/math.jpg" alt="Snow" style="width:100%; height:100%;">
-                    <div class="slide-text">Physics</div>
-                </div>
-            </div>
 
- 
+        <div class="container-fluid row3">
+            <div class="row">
+
+            <!--Carousel Wrapper-->
+            <div id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+            <!--Controls-->
+            <div class="controls-top">
+            <a class="btn-floating" href="#multi-item-example" data-slide="prev"><i class="fas fa-chevron-left"></i></a>
+            <a class="btn-floating" href="#multi-item-example" data-slide="next"><i class="fas fa-chevron-right"></i></a>
+            </div>
+            <!--/.Controls-->
+
+            <!--Indicators-->
+            <ol class="carousel-indicators">
+            <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+            <li data-target="#multi-item-example" data-slide-to="1"></li>
+            <li data-target="#multi-item-example" data-slide-to="2"></li>
+            </ol>
+            <!--/.Indicators-->
+
+            <!--Slides-->
+            <div class="carousel-inner" role="listbox">
+
+            <!--First slide-->
+            <div class="carousel-item active">
+
+                <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg"
+                    alt="Card image cap">
+                    <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+                    alt="Card image cap">
+                    <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(35).jpg"
+                    alt="Card image cap">
+                    <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+            <!--/.First slide-->
+
+            <!--Second slide-->
+            <div class="carousel-item">
+
+                <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(60).jpg"
+                    alt="Card image cap">
+                    <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(47).jpg"
+                    alt="Card image cap">
+                    <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(48).jpg"
+                    alt="Card image cap">
+                    <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+            <!--/.Second slide-->
+
+            <!--Third slide-->
+            <div class="carousel-item">
+
+                <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(53).jpg"
+                    alt="Card image cap">
+                    <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(45).jpg"
+                    alt="Card image cap">
+                    <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/4-col/img%20(51).jpg"
+                    alt="Card image cap">
+                    <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a class="btn btn-primary">Button</a>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+            <!--/.Third slide-->
+
+            </div>
+            <!--/.Slides-->
+
+            </div>
+            <!--/.Carousel Wrapper-->
+
+            </div>
+        </div>
         
         <!-- Footer containing site map and social media links-->
         <div class="footer">
@@ -428,8 +217,8 @@
             </ul>
             <hr>
         </div>
-    </body> 
-</html>
+
+@endsection
 
 
 

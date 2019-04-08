@@ -1,46 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container loginbody">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
+            <div class="card logincard mx-auto">
+                <div class="card-header logincard-head" style="text-align:center;">
+                   <img id=logo alt="CampusPro" style="margin-bottom:10px;" class="logo" src="{{ asset('images/logo.jfif') }}"><br>
+                    <p class="form-title">Student Login</p>
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" placeholder="Email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} logininput" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="password" placeholder="Password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} logininput" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
-                            </div>
-                        </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+
+                            <div class="col-md-6 formtext" style="margin-top:7px;">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -49,21 +39,23 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                            <div class="col-md-4 offset-md-1" style=" padding:0;">
+                            @if (Route::has('password.request'))
+                                    <a class="btn btn-link formtext" href="{{ route('password.request') }}">
+                                        Forgot Your Password?
                                     </a>
-                                @endif
+                            @endif
                             </div>
                         </div>
+
+                        <div class="row">
+                                <button type="submit" class="btn btn-primary mx-auto login-button">
+                                    {{ __('Login') }}
+                                </button>
+                        </div> 
+
+                        <p class="formtext" style="text-align:center;margin-top:10px;"> Don't have an account? <a class="formtext"  href="{{route('register')}}"> Register Here</a></p>
                     </form>
                 </div>
             </div>
