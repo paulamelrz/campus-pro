@@ -19,7 +19,7 @@ class ChannelController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'channel_name' => ['required', 'string', 'max:255'],
+            'channel_name' => ['required', 'string', 'max:191'],
             'course_code' =>['required', 'string', 'max:191'],
             'university'=>['required', 'string', 'max:70'],
             'description' => ['string', 'max:255']
@@ -95,10 +95,14 @@ class ChannelController extends Controller
      */
     public function show($id) //displays db record
     {
+        
+    }
+    
+    public function channelPage($id) //displays channel page 
+    {
         $channel_rec = Channel::where('channel_id', $id)->first();
         return view('/tutor-channel', compact('channel_rec'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -130,6 +134,8 @@ class ChannelController extends Controller
      */
     public function destroy($id) //delete record in db
     {
-        //
+        Channel::where('channel_id', $id)->delete();
+       
+        return redirect()->back()->with('message', 'Successfully deleted channel!');
     }
 }
