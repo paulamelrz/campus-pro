@@ -23,6 +23,7 @@
     <!-- Bootstrap ------->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
 
 	<!--Font Awesome Icons-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -32,13 +33,14 @@
 
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
    
 </head>
 <body>
     <div id="app">
         <nav class="navbar nav-bar navbar-expand-md navbar-light navbar-laravel">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <img id=logo alt="CampusPro" class="logo" src="{{ asset('images/logo.png') }}">
+                    <img id=logo alt="CampusPro" class="logo" src="{{ asset('images/logo.jfif') }}">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -68,17 +70,17 @@
                                 <a class="nav-link navlink dropdown-toggle" href="{{ route('login') }}" id="navbardrop" data-toggle="dropdown">
                                     {{ __('Login') }}
                                 </a>
-                                <div class="dropdown-menu">
+                                <div class="dropdown-menu" >
                                     <a class="dropdown-item" href="/login" >As Student</a>
                                     <a class="dropdown-item"  href="{{route('tutor.login')}}">As Tutor</a>
                                 </div>
                             </li> 
                             @if (Route::has('register'))
-                            <li class="nav-item">
+                            <li class="nav-item dropdown">
                                 <a class="nav-link navlink dropdown-toggle" style="margin-right:20px;" href="{{ route('register') }}" id="navbardrop" data-toggle="dropdown">{{ __('Register') }}</a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/register">As Student</a>
-                                    <a class="dropdown-item" href="{{route('tutor.register')}}" >As Tutor</a>
+                                    <a class="dropdown-item"  href="/register">As Student</a>
+                                    <a class="dropdown-item"  href="{{route('tutor.register')}}" >As Tutor</a>
                                 </div>
                             </li>
                             @endif
@@ -94,10 +96,12 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
+
                                     <a class="dropdown-item" href="{{ route('tutor') }}">Dashboard</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    
                                 </div>
                             </li>
                         @endguest

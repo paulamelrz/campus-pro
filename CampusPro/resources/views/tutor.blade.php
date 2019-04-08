@@ -93,17 +93,7 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 
-
-
-
-
-
-
-=======
- 
->>>>>>> 8a3a22b629dc1fa3f175f1f3ceb330d577b98209
 <!--Create Channel Modal -->
 <div class="modal fade" id="create-channel">
     <div class="modal-dialog  modal-dialog-centered modal-lg">
