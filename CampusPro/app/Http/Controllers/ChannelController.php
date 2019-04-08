@@ -78,13 +78,6 @@ class ChannelController extends Controller
         {
             return redirect()->back()->with('error', 'The course code does not exist. Click <a href="/course"> here </a> to add it to our records!');
         }
-/*
-        $validated = $request->validated();
-        $validated['tutor_id']=Auth::user()->id;
-        $validated['course_id']=1;
-
-        Channel::create($validated);
-*/
     }
 
     /**
@@ -107,7 +100,8 @@ class ChannelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $channelInfo = Channel::where('channel_id', $id)->first();
+        return redirect()->back()->with( compact('channelInfo'));
     }
 
     /**

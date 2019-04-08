@@ -64,6 +64,35 @@
                         2. Tutor can add text, video, img, links under each topic
                         3. Student can view content and navigate by topic.
                     -->
+                    <div class="row">
+                        
+                    <!-- Topics sidebar -->
+                        <div class="col-md-3">
+                            <div class="card mb-2">
+                                <div style="color:white;" class="card-header bg-dark">
+                                    <h5>Topics</h5>
+                                </div>
+                                    <div class="card-header">
+                                        <a class="card-link" href="#">Topic 1</a>
+                                    </div>
+                                    <div class="card-header">
+                                        <a class="card-link" href="#">Topic 2</a>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <!-- Topic Content -->
+                        <div class="col-md-9">
+                        <div class="card mb-2">
+                                <div class="card-header">
+                                    <h5>Topic title goes here</h5>
+                                </div>
+                                <div class="card-body">
+                                <iframe width="420" height="315" src="//www.youtube.com/embed/mBCizetiYEU" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Tutorials Feed Tab -->

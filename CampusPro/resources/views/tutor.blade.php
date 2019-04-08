@@ -27,10 +27,7 @@
         </div>
 
         <div class = "col-sm-5">
-            <h2>Name</h2>
-            <h3>University</h3>
-            <p> Hello my name is Tummika, I attend the university of the west indies cave hill campus and i am pursuing a degree 
-                in computer science. Please do my course, I need money :). </p>
+         
 
         </div>
 
@@ -153,4 +150,5 @@
         </div>
     </div>
 </div>
+
 @endsection
