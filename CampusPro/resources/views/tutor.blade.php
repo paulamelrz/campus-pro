@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -32,7 +33,19 @@
                 @else
                     <img src="images/profile.png" alt="profile picture" class="mr-3 mt-3 rounded-circle" style="width:60px;">
                 @endif
+
+
+
+                <div>
+                    <form action = "{{route('file.store')}}" method="post" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <input type="file" name="file" id="file">
+                    <button type="submit">Upload</button>
+                </div>
+
+
                 
+
                 <div class="media-body">
                     <h4>{{Auth::user()->name}} @if(Auth::user()->verified == 1)<img src="images/verified.png" style="width:30px;">@endif</h4>
                     
@@ -178,3 +191,4 @@
 
  
 @endsection
+

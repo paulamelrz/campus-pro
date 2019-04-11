@@ -4,7 +4,7 @@
 <div class="container loginbody">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card logincard mx-auto">
+            <div class="card logincard mx-auto ">
                 <div class="card-header logincard-head" style="text-align:center;">
                    <img id=logo alt="CampusPro" style="margin-bottom:10px;" class="logo" src="{{ asset('images/logo.jfif') }}"><br>
                     <p class="form-title">Tutor Login</p>
