@@ -43,6 +43,4 @@ Route::post('/tutor/register', 'Auth\TutorRegisterController@createTutor');*/
 //channel topic routes
 Route::resource('topics','ChannelTopicController');
 
-//File routes
 
-Route::post('/store', 'FileController@store')->name('file.store');
