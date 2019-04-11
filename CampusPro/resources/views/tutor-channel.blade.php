@@ -8,6 +8,21 @@
      });
     });
 </script>
+<!-- <script>
+    $(document).ready(function(){
+   
+    $(".topic a").click(function(){
+        var newId = $(this).attr("href");
+        //$('.topic-content' newId).show();
+        //$('.topic-content').show(newId);
+        // var target = $(.topic-content).nextAll(newId);
+        // $(".topic-content").not(target).hide();
+        // target.toggle();
+        
+        $(newId).toggle();
+     });
+    });
+</script> -->
 
 <br>
 <div class="container">
@@ -82,8 +97,8 @@
                                     <h5>Topics</h5>
                                 </div>
                                     @foreach($topics as $topic)
-                                        <div class="card-header">
-                                            <a class="card-link" href="#">{{$topic->title}}</a>
+                                        <div class="card-header topics">
+                                            <a class="card-link" href="#{{$topic->id}}">{{$topic->title}}</a>
                                         </div>
                                     @endforeach
                                     <div class="card-header addTopic">
@@ -109,15 +124,20 @@
 
                         <!-- Topic Content -->
                         <div class="col-md-9">
-                        <div class="card mb-2">
-                                <div class="card-header">
-                                    <h5>Topic title goes here</h5>
+                            @foreach($topics as $topic)
+                                <div id="{{$topic->id}}" class="card mb-2 topic-content">
+                                
+                                    <div class="card-header">
+                                        <h5>{{$topic->title}}</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p>{{$topic->textarea}}</p>
+                                        <!-- <iframe width="420" height="315" src="//www.youtube.com/embed/mBCizetiYEU" frameborder="0" allowfullscreen></iframe> -->
+                                    </div>
+
                                 </div>
-                                <div class="card-body">
-                                    <p>Some text explaining the topic..</p>
-                                <iframe width="420" height="315" src="//www.youtube.com/embed/mBCizetiYEU" frameborder="0" allowfullscreen></iframe>
-                                </div>
-                            </div>
+                            @endforeach
+                            <br>
                         </div>
                     </div>
                 </div>
