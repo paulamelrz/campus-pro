@@ -39,3 +39,10 @@ Route::get('tutor/login', 'Auth\TutorLoginController@showLoginForm');
 Route::get('tutor/register', 'Auth\TutorRegisterController@showRegistrationForm');
 Route::post('/tutor/login', 'Auth\TutorLoginController@tutorLogin');
 Route::post('/tutor/register', 'Auth\TutorRegisterController@createTutor');*/
+
+//channel topic routes
+Route::resource('topics','ChannelTopicController');
+
+//File routes
+
+Route::post('/store', 'FileController@store')->name('file.store');

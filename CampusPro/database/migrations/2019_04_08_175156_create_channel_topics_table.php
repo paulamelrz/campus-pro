@@ -15,11 +15,16 @@ class CreateChannelTopicsTable extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('channels_id');
             $table->string('title');
-            $table->text('textarea');
-
+            $table->text('textarea')->nullable();
             $table->timestamps();
+
+            //foreign key constraints
+            $table->foreign('channels_id')->references('channel_id')->on('channels')->onDelete('cascade');
         });
+
+       
 
         
     }
