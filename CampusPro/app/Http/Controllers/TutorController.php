@@ -31,7 +31,6 @@ class TutorController extends Controller
 //    {
 //
 //    }
-
     public function index()
     {
         //where parameters: (name of column, value being compared against)

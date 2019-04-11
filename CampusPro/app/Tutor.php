@@ -34,9 +34,4 @@ class Tutor extends Authenticatable
     public function channel(){
         return $this->hasMany('App\Channel');
     }
-
-    // public function university(){
-    //     return $this->belongsto('App\University');
-    // }
-
 }

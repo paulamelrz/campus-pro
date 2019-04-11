@@ -39,3 +39,6 @@ Route::resource('channels','ChannelController');
 Route::get('/course', 'CourseController@index');
 
 Route::post('/create-course', 'CourseController@store');
+
+//channel topic routes
+Route::resource('topics','ChannelTopicController');

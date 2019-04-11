@@ -1,25 +1,23 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Http\Requests\ChannelCreateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Channel;
 use App\Course;
+use App\ChannelTopic;
 use App\University;
 use Auth;
-
 class ChannelController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:tutor');
     }
-
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'channel_name' => ['required', 'string', 'max:255'],
+            'channel_name' => ['required', 'string', 'max:191'],
             'course_code' =>['required', 'string', 'max:191'],
             'university'=>['required', 'string', 'max:70'],
             'description' => ['string', 'max:255']
@@ -34,7 +32,6 @@ class ChannelController extends Controller
     {
         //
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -44,7 +41,6 @@ class ChannelController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -53,16 +49,12 @@ class ChannelController extends Controller
      */
     public function store(Request $request) //puts info in db table
     {
-
         //$this->validator($request->all())->validate();
-
         //check if course_code entered is in the courses table. If not, create course record.
-
         $uni_id = University::where('uni_name', '=', $request["university"])->first();
-      // dd($uni_id);
+      
         $course_rec = Course::where('course_code', $request->course_code)->where('uni_id', $uni_id->id)->first();
-      //  dd($course_rec);
-
+    
         if(isset($course_rec))
         {
             Channel::create([
@@ -79,7 +71,6 @@ class ChannelController extends Controller
             return redirect()->back()->with('error', 'The course code does not exist. Click <a href="/course"> here </a> to add it to our records!');
         }
     }
-
     /**
      * Display the specified resource.
      *
@@ -88,10 +79,15 @@ class ChannelController extends Controller
      */
     public function show($id) //displays db record
     {
-        $channel_rec = Channel::where('channel_id', $id)->first();
-        return view('/tutor-channel', compact('channel_rec'));
+        
     }
-
+    
+    public function channelPage($id) //displays channel page 
+    {
+        $topics = ChannelTopic::where('channels_id', $id)->get();
+        $channel_rec = Channel::where('channel_id', $id)->first();
+        return view('/tutor-channel', compact('channel_rec', 'topics'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -103,7 +99,6 @@ class ChannelController extends Controller
         $channelInfo = Channel::where('channel_id', $id)->first();
         return redirect()->back()->with( compact('channelInfo'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -115,7 +110,6 @@ class ChannelController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -124,6 +118,8 @@ class ChannelController extends Controller
      */
     public function destroy($id) //delete record in db
     {
-        //
+        Channel::where('channel_id', $id)->delete();
+       
+        return redirect()->back()->with('message', 'Successfully deleted channel!');
     }
 }

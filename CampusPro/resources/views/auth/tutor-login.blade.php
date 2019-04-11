@@ -55,7 +55,7 @@
                                     {{ __('Login') }}
                                 </button>
                         </div>
-                        <p class="formtext" style="text-align:center;margin-top:10px;"> Don't have an account? <a class="formtext"  href="{{route('tutor.login')}}"> Register Here</a></p>
+                        <p class="formtext" style="text-align:center;margin-top:10px;"> Don't have an account? <a class="formtext"  href="{{route('tutor.register')}}"> Register Here</a></p>
                     </form>
                 </div>
             </div>

@@ -18,12 +18,15 @@ class CreateTopicUploadsTable extends Migration
             $table->unsignedBigInteger('topic_id');
             $table->string('src');
             $table->string('filename');
+            $table->integer('size');
             $table->text('description')->nullable();
             $table->timestamps();
+        
+            //foreign key constraints
+        $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
         });
 
-        //foreign key constraints
-        $table->foreign('topic_id')->references('id')->on('channel_topics')->onDelete('cascade');
+        
     }
 
     /**
