@@ -33,4 +33,3 @@ Route::resource('topics','ChannelTopicController');
 //File routes
 
 Route::post('/store', 'FileController@store')->name('file.store');
-
