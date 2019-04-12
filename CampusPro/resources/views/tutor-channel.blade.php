@@ -1,25 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<script> //shows content when tab link is pressed
+<!-- <script> //shows content when tab link is pressed
     $(document).ready(function(){
     $(".nav-tabs a").click(function(){
         $(this).tab('show');
-     });
-    });
-</script>
-<!-- <script>
-    $(document).ready(function(){
-   
-    $(".topic a").click(function(){
-        var newId = $(this).attr("href");
-        //$('.topic-content' newId).show();
-        //$('.topic-content').show(newId);
-        // var target = $(.topic-content).nextAll(newId);
-        // $(".topic-content").not(target).hide();
-        // target.toggle();
-        
-        $(newId).toggle();
      });
     });
 </script> -->
@@ -58,19 +43,22 @@
         <!-- Tabs Nav -->
     <ul class="nav nav-tabs" style="margin-bottom:-63px; margin-top:50px;">
           <li class="nav-item active">
-                <a class="nav-link scroll" href="#content">Content</a>
+                <a class="nav-link scroll" data-toggle="tab" href="#content">Content</a>
           </li>
           <li class="nav-item">
-                <a class="nav-link scroll" href="#tutorials">Tutorials Feed</a>
+                <a class="nav-link scroll" data-toggle="tab" href="#tutorials">Tutorials Feed</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link scroll" href="#resource">Resource Hub</a>
+             <a class="nav-link scroll" data-toggle="tab" href="#resource">Resource Hub</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link scroll" href="#discussions">Discussions</a>
+             <a class="nav-link scroll" data-toggle="tab" href="#discussions">Discussions</a>
           </li>
           <li class="nav-item">
-             <a class="nav-link scroll" href="#info">info</a>
+             <a class="nav-link scroll" data-toggle="tab" href="#reviews">Reviews</a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link scroll" data-toggle="tab" href="#info">info</a>
           </li>
     </ul>   
     </div>
@@ -95,7 +83,7 @@
                                 </div>
                                     @foreach($topics as $topic)
                                         <div class="card-header topics">
-                                            <a class="card-link" href="#{{$topic->id}}">{{$topic->title}}</a>
+                                            <a data-toggle="tab" class="card-link" href="#{{$topic->id}}">{{$topic->title}}</a>
                                         </div>
                                     @endforeach
                                     <div class="card-header addTopic">
@@ -173,7 +161,40 @@
 
                     -->
                 </div>
+                <!-- Reviews Tab -->
+                <div id="reviews" class="tab-pane fade in active">
+                    <h4>Reviews</h4><br>
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
+                                        
+                                        <p class="text-secondary text-center">15 Minutes Ago</p>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <p>
+                                            <span><i class="text-warning fa fa-star"></i></span>
+                                            <span><i class="text-warning fa fa-star"></i></span>
+                                            <span><i class="text-warning fa fa-star"></i></span>
+                                            <span><i class="text-warning fa fa-star"></i></span>
+                                            <br>
+                                            <a class="float-left" href="#"><strong>Review Title Goes Here</strong></a>
 
+                                        </p>
+                                        <div class="clearfix"></div>
+                                        <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                                        <p>
+                                            <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
+                                            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Info Tab -->
                 <div id="info" class="tab-pane fade in active">
                     <h4>Channel Info</h4><br>

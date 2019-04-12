@@ -13,7 +13,7 @@ class FileController extends Controller
         /**
          * @var UploadedFile
          */
-
+     
         $file = $request->file('file');
         $name = Input::file('file')->getClientOriginalName();
         $path = "CampusPro\\public\\upload\\".$name;
