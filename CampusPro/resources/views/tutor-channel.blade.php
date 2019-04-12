@@ -66,7 +66,7 @@
         <div class="col-md-11">
             <div class="tab-content"><br>      
                 <!-- Content Tab -->
-                <div id="content" class="tab-pane fade in active">
+                <div id="content" class="container tab-pane active">
                     <h4>Content</h4><br>
                     <!--
                         1. Tutor can create topics 
@@ -128,7 +128,7 @@
                 </div>
 
                 <!-- Tutorials Feed Tab -->
-                <div id="tutorials" class="tab-pane fade in active">
+                <div id="tutorials" class="container tab-pane fade">
                     <h4>Tutorials Feed</h4><br>
                     <!--
                     1. Posts made by tutor ordered by most recent to least recent. 
@@ -139,7 +139,7 @@
                 </div>
 
                 <!-- Resource Hub Tab -->
-                <div id="resource" class="tab-pane fade in active">
+                <div id="resource" class="container tab-pane fade">
                     <h4>Resource Hub</h4><br>
                     <!--
                     1. Students and tutors can make posts
@@ -151,7 +151,7 @@
                 </div>
 
                 <!-- Dicussions Tab -->
-                <div id="discussions" class="tab-pane fade in active">
+                <div id="discussions" class="container tab-pane fade">
                     <h4>Discussions</h4><br>
                     <!--
                         1. Forum threads (topics) -> both students and tutors can create a thread
@@ -162,7 +162,7 @@
                     -->
                 </div>
                 <!-- Reviews Tab -->
-                <div id="reviews" class="tab-pane fade in active">
+                <div id="reviews" class="container tab-pane fade">
                     <h4>Reviews</h4><br>
                     <div class="container">
                         <div class="card">
@@ -196,7 +196,7 @@
                     </div>
                 </div>
                 <!-- Info Tab -->
-                <div id="info" class="tab-pane fade in active">
+                <div id="info" class="container tab-pane fade">
                     <h4>Channel Info</h4><br>
                     <!--
                     
