@@ -31,7 +31,7 @@
                 @if(Auth::user()->img_url != null)
                     <p>Output profile picture here</p>
                 @else
-                    <img src="images/profile.png" alt="profile picture" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+                    <img src="../../images/profile.png" alt="profile picture" class="mr-3 mt-3 rounded-circle" style="width:60px;">
                 @endif
 
 

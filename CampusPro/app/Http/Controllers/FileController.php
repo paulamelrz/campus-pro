@@ -13,17 +13,17 @@ class FileController extends Controller
         /**
          * @var UploadedFile
          */
-
-        $file = $request->file('file');
-        $name = Input::file('file')->getClientOriginalName();
-        $path = "CampusPro\\public\\upload\\".$name;
-        $path = str_replace("\\", DIRECTORY_SEPARATOR, $path);
-        $extension = Input::file('file')->getClientOriginalExtension();
-        $size = Input::file('file')->getSize();
-        $owner = "the current user";
-        $owner_type = "the current user's type";
-        $file->storePubliclyAs('upload',$name,'public');
-        return back();
-
+        if (Input::file('file')->isValid())
+        {
+            $file = $request->file('file');
+            $name = Input::file('file')->getClientOriginalName();
+            $path = "CampusPro\\public\\upload\\" . $name;
+            $path = str_replace("\\", DIRECTORY_SEPARATOR, $path);
+            $size = Input::file('file')->getSize();
+            $owner = "the current user";
+            $owner_type = "the current user's type";
+            $file->storePubliclyAs('upload', $name, 'public');
+            return back();
+        }
     }
 }
