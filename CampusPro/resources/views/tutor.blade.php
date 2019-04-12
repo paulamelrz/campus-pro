@@ -28,10 +28,15 @@
                 </div>
             @endif
             <div class="media border p-3">
-                @if(Auth::user()->img_url != null)
-                    <p>Output profile picture here</p>
+                @if(!is_null(\DB::table('tutor_profile_pics')->select('tutor_id')->where('tutor_id', Auth::user()->id)->first()))
+
+                    <?php
+                    $mypath = \DB::table('tutor_profile_pics')->select('src')->where('tutor_id', Auth::user()->id)->first();
+                    ?>
+                    <img src=' <?php echo $mypath->src; ?>' alt="profile picture" class="mr-3 mt-3 rounded-circle" style="width:60px;">
                 @else
-                    <img src="images/profile.png" alt="profile picture" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+
+                    <img src="../../images/profile.png" alt="profile picture" class="mr-3 mt-3 rounded-circle" style="width:60px;">
                 @endif
 
 
@@ -43,8 +48,8 @@
                     <input type="hidden" name="filetype-tag" value="profile-picture">
                     <input type="file" name="file" id="file">
                     <button type="submit">Upload</button>
+                    </form>
                 </div>
-
 
                 
 
