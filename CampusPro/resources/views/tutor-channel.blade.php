@@ -163,8 +163,81 @@
                 </div>
                 <!-- Reviews Tab -->
                 <div id="reviews" class="container tab-pane fade">
-                    <h4>Reviews</h4><br>
-                    <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="rating-block">
+                                    <h4>Average user rating</h4>
+                                    <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
+                                    <span><i class="text-warning fa fa-star"></i></span>
+                                    <span><i class="text-warning fa fa-star"></i></span>
+                                    <span><i class="text-warning fa fa-star"></i></span>
+                                    <span><i class="text-warning fa fa-star"></i></span>
+                                    <span><i class="text-warning fa fa-star-half-alt"></i></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                        <hr/>
+                        <div class="review-block">
+                             <div class="row">
+                                    <div class="col-sm-3">
+                                        <img src="images/profile.png" alt="profile pic" class="mr-3 mt-3 rounded-circle" style="width:50px;">
+                                        <div class="review-block-name"><a href="#">nktailor</a></div>
+                                        <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="review-block-rate">
+                                                <span><i class="text-warning fa fa-star"></i></span>
+                                                <span><i class="text-warning fa fa-star"></i></span>
+                                                <span><i class="text-warning fa fa-star"></i></span>
+                                                <span><i class="text-warning fa fa-star"></i></span>
+                                                <span><i class="text-warning fa fa-star-half-alt"></i></span>
+                                        </div>
+                                        <div class="review-block-title">this was nice in buy</div>
+                                        <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                    </div>    
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img src="images/profile.png" alt="profile pic" class="mr-3 mt-3 rounded-circle" style="width:50px;">
+                                        <div class="review-block-name"><a href="#">nktailor</a></div>
+                                        <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="review-block-rate">
+                                         <span><i class="text-warning fa fa-star"></i></span>
+                                         <span><i class="text-warning fa fa-star"></i></span>
+                                         <span><i class="text-warning fa fa-star"></i></span>
+                                         <span><i class="text-warning fa fa-star"></i></span>
+                                         <span><i class="text-warning fa fa-star-half-alt"></i></span>
+                                        </div>
+                                        <div class="review-block-title">this was nice in buy</div>
+                                        <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img src="images/profile.png" alt="profile pic" class="mr-3 mt-3 rounded-circle" style="width:50px;">
+                                        <div class="review-block-name"><a href="#">nktailor</a></div>
+                                        <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="review-block-rate">
+                                        <span><i class="text-warning fa fa-star"></i></span>
+                                        <span><i class="text-warning fa fa-star"></i></span>
+                                        <span><i class="text-warning fa fa-star"></i></span>
+                                        <span><i class="text-warning fa fa-star"></i></span>
+                                        <span><i class="text-warning fa fa-star-half-alt"></i></span>
+                                    </div>
+                                    <div class="review-block-title">this was nice in buy</div>
+                                    <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>			
+                </div>
+                    <!-- <div class="container">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
@@ -193,7 +266,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!-- Info Tab -->
                 <div id="info" class="container tab-pane fade">
