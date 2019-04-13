@@ -43,32 +43,7 @@ class TopicUploadController extends Controller
      */
     public function store(Request $request)
     {
-        /**
-         * @var UploadedFile
-         */
-
-        if (Input::file('file')->isValid()) {
-            $file = $request->file('file');
-            $name = $request->file('file')->getClientOriginalName();
-            $ext = $request->file->extension();
-            $owner = Auth::user()->id;
-            $path = "..\\..\\tutor_profile_pic_upload\\profile_pic_" . $owner . "." . $ext;
-            $path = str_replace("\\", DIRECTORY_SEPARATOR, $path);
-            $size = Input::file('file')->getSize();
-           // $created = date("Y-m-d H:i:s", $uploaded_at = $request->file('file')->getCTime());
-            //echo \DB::table('tutor_profile_pics')->select('src')->where('tutor_id', Auth::user()->id)->get();
-
-            $file->storePubliclyAs('tutor_profile_pic_upload', "profile_pic_" . $owner . "." . $ext, 'public');
-
-                \DB::table('topic_uploads')->insert(
-                    ['filename' => $name,
-                        'src' => $path,
-                        'size' => $size,
-                        'tutor_id' => $owner
-                    ]);
-
-            return back();
-        }
+        //
     }
 
     /**
@@ -102,7 +77,29 @@ class TopicUploadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /**
+         * @var UploadedFile
+         */
+
+
+            $file = $request->file('file');
+            $name = $request->file('file')->getClientOriginalName();
+            $path = "..\\..\\Topic_File_Upload\\topic_file" . $name;
+            $path = str_replace("\\", DIRECTORY_SEPARATOR, $path);
+            $size = Input::file('file')->getSize();
+            $description = " ";
+
+            $file->storePubliclyAs('Topic_File_Uploads', "topic_file_" . $name, 'public');
+
+            \DB::table('topic_uploads')->insert(
+                ['filename' => $name,
+                    'src' => $path,
+                    'size' => $size,
+                    'topic_id' => $id,
+                    'description' => $description,
+                ]);
+
+            //return back();
     }
 
     /**
