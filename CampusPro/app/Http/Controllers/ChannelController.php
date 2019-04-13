@@ -52,6 +52,7 @@ class ChannelController extends Controller
         //$this->validator($request->all())->validate();
         //check if course_code entered is in the courses table. If not, create course record.
         $uni_id = University::where('uni_name', '=', $request["university"])->first();
+
       
         $course_rec = Course::where('course_code', $request->course_code)->where('uni_id', $uni_id->id)->first();
     
