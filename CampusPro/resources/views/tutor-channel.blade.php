@@ -67,7 +67,6 @@
             <div class="tab-content"><br>      
                 <!-- Content Tab -->
                 <div id="content" class="container tab-pane active">
-                    <h4>Content</h4><br>
                     <!--
                         1. Tutor can create topics 
                         2. Tutor can add text, video, img, links under each topic
@@ -116,7 +115,18 @@
                                         <h5>{{$topic->title}}</h5>
                                     </div>
                                     <div class="card-body">
-                                        <p>{{$topic->textarea}}</p>
+                                        @if($topic->textarea != NULL)
+                                            <p>{{$topic->textarea}}</p>
+                                            <button method="put" action="{{route('topics.update', $channel->channel_id)}}" class="btn btn-secondary">
+                                                <i class="fas fa-edit"></i> Edit text
+                                            </button> 
+                                        @else
+                                            <form type="text" method="put" action="{{route('topics.update', $channel->channel_id)}}">
+                                                <textarea></textarea>
+                                            </form>
+                                            
+                                        @endif
+                                        
                                         <!-- <iframe width="420" height="315" src="//www.youtube.com/embed/mBCizetiYEU" frameborder="0" allowfullscreen></iframe> -->
                                     </div>
 
@@ -235,7 +245,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>			
+                    </div>	
+                    <!-- If a student is logged in, show Leave a Review form-->
+                    @if(Auth::guard('web')->check())
+                        <button class="btn btn-success">I am a student</button>
+                    @endif		
                 </div>
                     <!-- <div class="container">
                         <div class="card">

@@ -33,7 +33,6 @@ class FileController extends Controller
         $owner = "the current user";
         $owner_type = "the current user's type";
         $file->storePubliclyAs('upload',$name,'public');
-        return back();
 
         if (Input::file('file')->isValid())
         {

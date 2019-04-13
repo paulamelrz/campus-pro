@@ -31,5 +31,10 @@ Route::post('/create-course', 'CourseController@store');
 Route::resource('topics','ChannelTopicController');
 
 //File routes
-
 Route::post('/store', 'FileController@store')->name('file.store');
+
+//Channel Topic routes
+Route::resource('topics', 'ChannelTopicController');
+
+//Topic Uploads route
+Route::resource('topic_uploads', 'TopicUploadController');
