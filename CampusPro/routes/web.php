@@ -35,6 +35,13 @@ Route::post('/store', 'FileController@store')->name('file.store');
 
 //Channel Topic routes
 Route::resource('topics', 'ChannelTopicController');
+//Route::put('/topicText{id}', 'ChannelTopicController@saveText')->name('topics.text');
 
 //Topic Uploads route
 Route::resource('topic_uploads', 'TopicUploadController');
+
+
+//reviews
+Route::resource('channel_reviews', 'ChannelReviewController');
+
+

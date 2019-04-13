@@ -15,8 +15,29 @@ class CreateChannelReviewsTable extends Migration
     {
         Schema::create('channel_reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('channels_id');
+            $table->unsignedInteger('stu_id');
+            $table->string('title');
+            $table->string('comment')->nullable();
+            $table->float('stars', 2, 1);
+            $table->biginteger('likes')->default(0);           
             $table->timestamps();
+            
+            //foreign key constraints
+
+
+            $table->foreign('stu_id')
+            ->references('id')->on('students')
+            ->onDelete('cascade');   
+
+            $table->foreign('channels_id')
+            ->references('channel_id')->on('channels')
+            ->onDelete('cascade');
+
         });
+
+     
+
     }
 
     /**

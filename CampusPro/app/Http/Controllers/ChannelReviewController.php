@@ -3,25 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use App\ChannelTopic;
 
-class ChannelTopicController extends Controller
+class ChannelReviewController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth:tutor');
-    }
-
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'topic' => ['required', 'string'],
-            'description' => ['text']
-        ]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +23,7 @@ class ChannelTopicController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -50,24 +34,9 @@ class ChannelTopicController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validator($request->all())->validate();
-        
-        ChannelTopic::create([
-        'channels_id' => $request['channel_id'],
-        'title' => $request['topic']
-        ]);
-
-        return redirect()->back()->with('topic-success', 'Topic added successfully!');
+        //
     }
 
-    public function saveText(Request $request, $id)
-    {
-        $this->validator($request->all())->validate();
-
-        ChannelTopic::where('id', $id)->update('textarea', $request['topic-text']);
-
-        return redirect()->back()->with('textarea-success', 'Text added');
-    }
     /**
      * Display the specified resource.
      *
