@@ -30,9 +30,14 @@
             <div class="col-2">
 
                 <?php
-                $mypath = \DB::table('tutor_profile_pics')->select('src')->where('tutor_id', Auth::user()->id)->first();
+                $mypath = \DB::table('channels')->select('thumbnail')->where('channel_id', $channel_rec->channel_id)->first();
                 ?>
-                <img src="<?php echo $mypath->src; ?>" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:90px; float:left;">
+                @if($mypath->thumbnail != NULL)
+                    <img src="<?php echo $mypath->thumbnail; ?>" alt="thumbnail" class="mr-3 mt-3 ml-4 rounded-circle" style="height:100px; width:100px; float:left;">
+                @else
+                <img src="../images/imgPlaceholder.png" alt="thumbnail" class="mr-3 mt-3 ml-4 rounded-circle" style="height:100px; width:110px; float:left;">
+                @endif
+                
             </div>
             <div class="col-8">
                 <h2 class="float:right; ">{{$channel_rec->channel_name}}</h2>
@@ -92,7 +97,7 @@
                                 </div>
                                     @foreach($topics as $topic)
                                         <div class="card-header topics">
-                                            <a data-toggle="tab" class="card-link" href="#{{$topic->id}}">{{$topic->title}}</a>
+                                            <a class="card-link" href="#topic{{$topic->id}}">{{$topic->title}}</a>
                                         </div>
                                     @endforeach
                                     <div class="card-header addTopic">
@@ -119,7 +124,8 @@
                         <!-- Topic Content -->
                         <div class="col-md-9">
                             @foreach($topics as $topic)
-                                <div id="{{$topic->id}}" class="card mb-2 topic-content">
+                            <div id="topic{{$topic->id}}" class="topic-content">
+                                <div class="card mb-2 ">
                                 
                                     <div class="card-header">
                                         <h5>{{$topic->title}}</h5>
@@ -164,8 +170,9 @@
                                         {!! Form::close() !!}
                                     </div>
                                 </div>
+                            </div>
                             @endforeach
-                            <br>
+                            <br><br><br>
                         </div>
                     </div>
                 </div>
@@ -324,6 +331,35 @@ $(document).ready(function(){
         $('.addText form').hide();
         $('.addText a').show();
     });
+    //topic links navigation
+
+    // $(".topics a").click(function(){
+        
+    //     function showOne(id) {
+    //     $('.topic-content').(id);
+    //     }
+
+    //     var topicid = $(this).attr('href');
+    //     console.log(topicid);
+    //     showOne(topicid);
+
+    // });  
+
+$('.topic-content').not('#topic1').css("display", "none");
+$('.topics a').click(function(event) {
+  event.preventDefault();
+  
+  // Toggle active class on tab buttons
+  $(this).parent().addClass("current");
+  $(this).parent().siblings().removeClass("current");
+  
+  // display only active tab content
+  var activeTab = $(this).attr("href");
+  $('.topic-content').not(activeTab).css("display","none");
+  $(activeTab).fadeIn();
+  
+});
+    
 }); 
 </script>
 @endsection

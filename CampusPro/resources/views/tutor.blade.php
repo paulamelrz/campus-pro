@@ -33,7 +33,7 @@
                     <?php
                     $mypath = \DB::table('tutor_profile_pics')->select('src')->where('tutor_id', Auth::user()->id)->first();
                     ?>
-                    <img src=' <?php echo $mypath->src; ?>' alt="profile picture" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+                    <img src=' <?php echo $mypath->src; ?>' alt="profile picture"  class="mr-3 mt-3 ml-4 rounded-circle" style="height:90px; width:90px;">
                 @else
 
                     <img src="../../images/profile.png" alt="profile picture" class="mr-3 mt-3 rounded-circle" style="width:60px;">
