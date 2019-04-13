@@ -99,7 +99,7 @@ class TopicUploadController extends Controller
                     'description' => $description,
                 ]);
 
-            //return back();
+            return back();
     }
 
     /**
