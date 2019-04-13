@@ -17,8 +17,8 @@ class CreateTopicUploadsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('topic_id');
             $table->string('src');
-            $table->string('filename');
-            $table->integer('size');
+            $table->string('filename')->nullable();
+            $table->integer('size')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         
