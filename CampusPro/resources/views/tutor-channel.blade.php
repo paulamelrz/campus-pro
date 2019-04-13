@@ -167,7 +167,7 @@
                                             {!! Form::submit('Upload') !!}
                                         </div>
                                         {!! Form::close() !!}
-
+                                    </div>
                                 </div>
                             @endforeach
                             <br>
