@@ -21,6 +21,10 @@ class Channel extends Model
         return $this->belongsTo('App\Course');
     }
 
+    public function review(){
+        return $this->hasMany('App\ChannelReview');
+    }
+
     
 
 }

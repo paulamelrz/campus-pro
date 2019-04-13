@@ -16,13 +16,23 @@
         {{ session()->get('topic-success') }}
     </div>
 @endif
+@if(session('textarea-success')!= NULL)
+    <div class="alert alert-success" role="alert">
+        {{ session()->get('textarea-success') }}
+    </div>
+@endif
+
     <header class="bg-secondary align-items-center">
         <img style="height:auto; width:100%;"src="images/banner.png">
     </header>
     <div class="jumbotron">
         <div class="row">
             <div class="col-2">
-                <img src="images/profile.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:90px; float:left;">
+
+                <?php
+                $mypath = \DB::table('tutor_profile_pics')->select('src')->where('tutor_id', Auth::user()->id)->first();
+                ?>
+                <img src="<?php echo $mypath->src; ?>" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:90px; float:left;">
             </div>
             <div class="col-8">
                 <h2 class="float:right; ">{{$channel_rec->channel_name}}</h2>
@@ -67,7 +77,6 @@
             <div class="tab-content"><br>      
                 <!-- Content Tab -->
                 <div id="content" class="container tab-pane active">
-                    <h4>Content</h4><br>
                     <!--
                         1. Tutor can create topics 
                         2. Tutor can add text, video, img, links under each topic
@@ -116,10 +125,44 @@
                                         <h5>{{$topic->title}}</h5>
                                     </div>
                                     <div class="card-body">
-                                        <p>{{$topic->textarea}}</p>
+                                        @if($topic->textarea != NULL)
+
+                                            <p value="{{$topic->textarea}}">{{$topic->textarea}}</p>
+
+                                            <p>{{$topic->textarea}}</p>
+
+                                            <button method="put" action="{{route('topics.update', $topic->id)}}" class="btn btn-secondary">
+                                                <i class="fas fa-edit"></i> Edit text
+                                            </button> 
+                                        @else
+
+                                        <div class="addText">
+                                            <a style="color:white; display:block; width:50%;" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Text</a>
+                                            <form style="display:none;" type="text" method="put" action="">
+                                                <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topic-text" required></textarea><br>
+                                                <button id="save" type="submit" class="btn btn-success"> Save</button>
+                                                <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
+                                        </div>    
+                                        @endif
+                                        
                                         <!-- <iframe width="420" height="315" src="//www.youtube.com/embed/mBCizetiYEU" frameborder="0" allowfullscreen></iframe> -->
                                     </div>
 
+                                    <div>
+
+                                        {!! Form::open(
+                                            array(
+                                                'method' => 'PUT',
+                                                'route' => array('topic_uploads.update',$topic->id) ,
+                                                'novalidate' => 'novalidate',
+                                                'files' => true)) !!}
+
+                                        <div class="form-group">
+                                            {!! Form::file('file', null) !!}
+                                            {!! Form::submit('Upload') !!}
+                                        </div>
+                                        {!! Form::close() !!}
+                                    </div>
                                 </div>
                             @endforeach
                             <br>
@@ -235,38 +278,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>			
+                    </div>	
+                    <!-- If a student is logged in, show Leave a Review form-->
+                    @if(Auth::guard('web')->check())
+                        <button class="btn btn-success">I am a student</button>
+                    @endif		
                 </div>
-                    <!-- <div class="container">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-                                        
-                                        <p class="text-secondary text-center">15 Minutes Ago</p>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <p>
-                                            <span><i class="text-warning fa fa-star"></i></span>
-                                            <span><i class="text-warning fa fa-star"></i></span>
-                                            <span><i class="text-warning fa fa-star"></i></span>
-                                            <span><i class="text-warning fa fa-star"></i></span>
-                                            <br>
-                                            <a class="float-left" href="#"><strong>Review Title Goes Here</strong></a>
-
-                                        </p>
-                                        <div class="clearfix"></div>
-                                        <p>Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                        <p>
-                                            <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
-                                            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                   
                 </div>
                 <!-- Info Tab -->
                 <div id="info" class="container tab-pane fade">
@@ -295,6 +313,16 @@ $(document).ready(function(){
     $("#cancel").click(function(){
         $('.addTopic form').hide();
         $('.addTopic a').show();
+    });
+
+    //show textarea form for topic
+    $(".addText a").click(function(){
+        $(this).hide();
+        $('.addText form').show();
+    });
+    $("#cancelText").click(function(){
+        $('.addText form').hide();
+        $('.addText a').show();
     });
 }); 
 </script>

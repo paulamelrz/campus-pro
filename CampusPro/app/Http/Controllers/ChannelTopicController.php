@@ -60,6 +60,14 @@ class ChannelTopicController extends Controller
         return redirect()->back()->with('topic-success', 'Topic added successfully!');
     }
 
+    public function saveText(Request $request, $id)
+    {
+        $this->validator($request->all())->validate();
+
+        ChannelTopic::where('id', $id)->update('textarea', $request['topic-text']);
+
+        return redirect()->back()->with('textarea-success', 'Text added');
+    }
     /**
      * Display the specified resource.
      *
