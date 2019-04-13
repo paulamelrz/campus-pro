@@ -7,6 +7,7 @@ use App\Channel;
 use App\Course;
 use App\ChannelTopic;
 use App\University;
+use App\TopicUpload;
 use Auth;
 class ChannelController extends Controller
 {
@@ -84,6 +85,7 @@ class ChannelController extends Controller
     
     public function channelPage($id) //displays channel page 
     {
+
         $topics = ChannelTopic::where('channels_id', $id)->get();
         $channel_rec = Channel::where('channel_id', $id)->first();
         return view('/tutor-channel', compact('channel_rec', 'topics'));

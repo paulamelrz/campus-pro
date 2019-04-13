@@ -28,7 +28,11 @@
     <div class="jumbotron">
         <div class="row">
             <div class="col-2">
-                <img src="images/profile.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:90px; float:left;">
+
+                <?php
+                $mypath = \DB::table('tutor_profile_pics')->select('src')->where('tutor_id', Auth::user()->id)->first();
+                ?>
+                <img src="<?php echo $mypath->src; ?>" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:90px; float:left;">
             </div>
             <div class="col-8">
                 <h2 class="float:right; ">{{$channel_rec->channel_name}}</h2>
@@ -122,23 +126,47 @@
                                     </div>
                                     <div class="card-body">
                                         @if($topic->textarea != NULL)
+
                                             <p value="{{$topic->textarea}}">{{$topic->textarea}}</p>
+
+                                            <p>{{$topic->textarea}}</p>
+
                                             <button method="put" action="{{route('topics.update', $topic->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-edit"></i> Edit text
                                             </button> 
                                         @else
+
                                         <div class="addText">
                                             <a style="color:white; display:block; width:50%;" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Text</a>
                                             <form style="display:none;" type="text" method="put" action="{{route('topics.text', $topic->id)}}">
                                                 <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topic-text" required></textarea><br>
                                                 <button id="save" type="submit" class="btn btn-success"> Save</button>
                                                 <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
+
+                                            <form type="text" method="put" action="{{route('topics.update', $topic->id)}}">
+                                                <textarea></textarea>
+
                                             </form>
                                         </div>    
                                         @endif
                                         
                                         <!-- <iframe width="420" height="315" src="//www.youtube.com/embed/mBCizetiYEU" frameborder="0" allowfullscreen></iframe> -->
                                     </div>
+
+                                    <div>
+
+                                        {!! Form::open(
+                                            array(
+                                                'method' => 'PUT',
+                                                'route' => array('topic_uploads.update',$topic->id) ,
+                                                'novalidate' => 'novalidate',
+                                                'files' => true)) !!}
+
+                                        <div class="form-group">
+                                            {!! Form::file('file', null) !!}
+                                            {!! Form::submit('Upload') !!}
+                                        </div>
+                                        {!! Form::close() !!}
 
                                 </div>
                             @endforeach

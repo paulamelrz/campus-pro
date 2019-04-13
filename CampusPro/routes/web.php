@@ -40,5 +40,8 @@ Route::resource('topics', 'ChannelTopicController');
 //Topic Uploads route
 Route::resource('topic_uploads', 'TopicUploadController');
 
+
 //reviews
 Route::resource('channel_reviews', 'ChannelReviewController');
+
+
