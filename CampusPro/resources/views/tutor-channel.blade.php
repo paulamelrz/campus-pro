@@ -146,11 +146,15 @@
                                         </div>
                                         @endif
 
-                                          <?php
-                                           /*<video width="1280" height="720">
-                                                <source src="../../public/Topic_File_Uploads/" type="video/mp4">
-                                            </video>
-                                            */?>
+                                        set up a for each to go through each entry in the db that matches the topic id
+
+                                            set up an if to determine which view is required (audio/video/pdf)
+                                           <video width="480" height="360" controls autoplay>
+                                               <source src="{{asset('Topic_File_Uploads/movie.mp4')}}" type="video/mp4">
+                                               <source src="{{asset('Topic_File_Uploads/movie.ogg')}}" type="video/ogg">
+                                               Your browser does not support the video tag.
+                                           </video>
+
                                         <!-- <iframe width="420" height="315" src="//www.youtube.com/embed/mBCizetiYEU" frameborder="0" allowfullscreen></iframe> -->
                                     </div>
 
