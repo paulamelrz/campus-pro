@@ -44,6 +44,8 @@
                 <div>
                     <form action = "{{route('file.store')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
+                    <input type="hidden" name="context-tag" value="tutor-profile">
+                    <input type="hidden" name="filetype-tag" value="profile-picture">
                     <input type="file" name="file" id="file">
                     <button type="submit">Upload</button>
                     </form>
