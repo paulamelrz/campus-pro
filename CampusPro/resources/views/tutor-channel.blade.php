@@ -142,9 +142,15 @@
                                                 <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topic-text" required></textarea><br>
                                                 <button id="save" type="submit" class="btn btn-success"> Save</button>
                                                 <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
-                                        </div>    
+                                            </form>
+                                        </div>
                                         @endif
-                                        
+
+                                          <?php
+                                           /*<video width="1280" height="720">
+                                                <source src="../../public/Topic_File_Uploads/" type="video/mp4">
+                                            </video>
+                                            */?>
                                         <!-- <iframe width="420" height="315" src="//www.youtube.com/embed/mBCizetiYEU" frameborder="0" allowfullscreen></iframe> -->
                                     </div>
 
