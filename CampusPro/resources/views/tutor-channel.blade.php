@@ -138,7 +138,7 @@
 
                                         <div class="addText">
                                             <a style="color:white; display:block; width:50%;" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Text</a>
-                                            <form style="display:none;" type="text" method="put" action="{{route('topics.text', $topic->id)}}">
+                                            <form style="display:none;" type="text" method="put" action="">
                                                 <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topic-text" required></textarea><br>
                                                 <button id="save" type="submit" class="btn btn-success"> Save</button>
                                                 <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
