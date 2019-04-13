@@ -142,11 +142,6 @@
                                                 <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topic-text" required></textarea><br>
                                                 <button id="save" type="submit" class="btn btn-success"> Save</button>
                                                 <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
-
-                                            <form type="text" method="put" action="{{route('topics.update', $topic->id)}}">
-                                                <textarea></textarea>
-
-                                            </form>
                                         </div>    
                                         @endif
                                         
