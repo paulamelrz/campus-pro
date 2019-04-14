@@ -238,17 +238,7 @@
         </div>
     </div>
 
-        
-        <!-- Footer containing site map and social media links-->
-        <div class="footer">
-            <ul>
-                <li><a href="#" class="footer-text">Home</a></li>
-                <li><a href="#" class="footer-text">Courses</a></li>
-                <li><a href="#" class="footer-text">Login</a></li>
-                <li><a href="#" class="footer-text">Register</a></li>
-            </ul>
-            <hr>
-        </div>
+
 
 @endsection
 

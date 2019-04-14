@@ -4,6 +4,7 @@
 {
     background-color: #2DC7B2!important; 
     box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    margin-bottom: 0px !important;
 }
 
 nav
@@ -278,6 +279,144 @@ img
 
 
 
+/*Tutor Dashboard*/
+
+
+.profilebody
+{
+    background-image: url("../images/notebook-336634_1280.jpg");
+    padding-top:50px;
+}
+
+.card-profile
+{
+    background-color: rgba(255, 255, 255, 0.753) !important;
+}
+
+.card-mychannel {
+    background-color: rgba(255, 255, 255, 0.753) !important;
+    border: 0 solid #eee;
+    border-radius: 0;
+    margin-bottom: 30px;
+    -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
+    
+}
+
+.header-profile
+{
+    background-color: rgba(255, 255, 255, 0.643) !important;
+}
+
+.channels
+{
+    padding-left:10px !important;
+    padding-right:10px;
+    padding-bottom:45px;
+}
+
+.card-profile .header-profile {
+    height: 9rem;
+    background-size: cover;
+    background-position: center center
+}
+
+.card-profile-img {
+    max-width: 8rem;
+    margin-top: -6rem;
+    margin-bottom: 1rem;
+    border: 3px solid #fff;
+    border-radius: 100%
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 50%;
+    display: inline-block;
+    background: #ced4da no-repeat center/cover;
+    position: relative;
+    text-align: center;
+    color: #868e96;
+    font-weight: 600;
+    vertical-align: bottom
+}
+
+.avatar.avatar-md {
+    width: 3rem;
+    height: 3rem
+}
+
+.avatar.avatar-lg {
+    width: 4rem;
+    height: 4rem
+}
+
+.avatar.avatar-xl {
+    width: 5rem;
+    height: 5rem
+}
+
+.avatar.avatar-xxl {
+    width: 7rem;
+    height: 7rem;
+    min-width: 7rem
+}
+
+.header-profile:first-child {
+    border-radius: 0 0 0 0;
+}
+.header-profile:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+.header-profile {
+    padding: 1rem 1.25rem;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
+}
+
+.addchannel
+{
+    background-color: rgb(226, 66, 82) !important;
+    border-color: #FF243A;
+    color: white !important;
+}
+
+.choosefile
+{
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.choosefile + label
+{
+    cursor: pointer;
+}
+
+.uploadpro
+{
+    border:none;
+    margin-top:0 !important;
+    background-color:transparent;
+    color:rgb(31, 31, 31) !important;
+}
+
+.chan-modal
+{
+ width:40% !important;
+}
+
+.createchannel-header
+{
+    background-color:rgb(226, 66, 82) !important;
+}
 
 /*Footer*/
 
@@ -297,10 +436,7 @@ ul
     bottom:0;
 }
 
-hr
-{
-    color: darkgrey;
-}
+
 
 .footer-text
 {
@@ -320,16 +456,10 @@ hr
 /*Form Pages*/
 
 
-.loginbody
-{
-    padding-top: 50px;
-}
-
-
 .loginbody 
 {
     background-image: url("../images/loginpage.jpg");
-    
+     padding-top: 50px;
 }
 
 .card-header
@@ -351,7 +481,7 @@ hr
 
 .logincard
 {
-    width:60%;
+    width:50%;
     background-color:rgba(255, 255, 255, 0.664) !important;
     margin-bottom: 50px;
 }

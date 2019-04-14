@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container loginbody">
+<div class="container-fluid loginbody">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card logincard mx-auto">
