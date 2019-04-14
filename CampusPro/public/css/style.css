@@ -416,3 +416,9 @@ hr
 .review-block-description{
 	font-size:13px;
 }
+
+
+video {
+    width: 100%;
+    height: auto;
+}
