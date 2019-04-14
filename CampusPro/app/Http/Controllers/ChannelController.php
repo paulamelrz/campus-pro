@@ -8,13 +8,11 @@ use App\Course;
 use App\ChannelTopic;
 use App\University;
 use App\TopicUpload;
+use App\Enrollment;
 use Auth;
 class ChannelController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:tutor');
-    }
+  
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -86,10 +84,12 @@ class ChannelController extends Controller
     
     public function channelPage($id) //displays channel page 
     {
-
+        $topic_uploads = TopicUpload::all();
         $topics = ChannelTopic::where('channels_id', $id)->get();
         $channel_rec = Channel::where('channel_id', $id)->first();
-        return view('/tutor-channel', compact('channel_rec', 'topics'));
+        $enrollments= Enrollment::where('channels_id', $id)->get();
+
+        return view('/tutor-channel', compact('channel_rec', 'topics', 'enrollments','topic_uploads'));
     }
     /**
      * Show the form for editing the specified resource.

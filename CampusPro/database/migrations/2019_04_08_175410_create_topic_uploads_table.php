@@ -19,8 +19,7 @@ class CreateTopicUploadsTable extends Migration
             $table->string('src');
             $table->string('filename')->nullable();
             $table->integer('size')->nullable();
-            $table->text('description')->nullable();
-            $table->timestamps();
+            $table->string('extension');
         
             //foreign key constraints
         $table->foreign('topic_id')->references('id')->on('topics')->onDelete('cascade');
