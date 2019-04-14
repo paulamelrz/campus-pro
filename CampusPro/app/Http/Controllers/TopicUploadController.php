@@ -68,6 +68,15 @@ class TopicUploadController extends Controller
         //
     }
 
+    public function getVideo(Video $video)
+    {
+        $name = $video->name;
+        $fileContents = Storage::disk('local')->get("uploads/videos/{$name}");
+        $response = Response::make($fileContents, 200);
+        $response->header('Content-Type', "video/mp4");
+        return $response;
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -99,7 +108,7 @@ class TopicUploadController extends Controller
                     'description' => $description,
                 ]);
 
-            //return back();
+            return back();
     }
 
     /**
