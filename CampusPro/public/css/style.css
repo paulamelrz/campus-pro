@@ -132,9 +132,6 @@ nav
     padding:0;
 }
 
-/*Row 3 - Carousel*/
-
-
 .row3-head {
 	color: #000;
 	font-size: 26px;
@@ -144,6 +141,9 @@ nav
 	position: relative;
     margin-top: 30px;
 }
+
+
+/*Row 3 - Carousel*/
 
 .carousel {
 	margin: 50px auto;
@@ -269,6 +269,15 @@ img
 	font-size: 14px;
 	color: #ffc000;
 }
+
+
+/*Row 4 Carousel*/
+
+
+
+
+
+
 
 /*Footer*/
 
