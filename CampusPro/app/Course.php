@@ -14,6 +14,6 @@ class Course extends Model
     }
 
     public function university(){
-        return $this->belongsTo(App\University);
+        return $this->belongsTo('App\University');
     }
 }

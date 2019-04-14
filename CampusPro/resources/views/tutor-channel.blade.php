@@ -9,6 +9,16 @@
         {{ session()->get('topic-success') }}
     </div>
 @endif
+@if(session('enroll-success')!= NULL)
+    <div class="alert alert-success" role="alert">
+        {{ session()->get('enroll-success') }}
+    </div>
+@endif
+@if(session('unenroll-success')!= NULL)
+    <div class="alert alert-warning" role="alert">
+        {{ session()->get('unenroll-success') }}
+    </div>
+@endif
 @if(session('textarea-success')!= NULL)
     <div class="alert alert-success" role="alert">
         {{ session()->get('textarea-success') }}
@@ -45,8 +55,28 @@
                 </div>                
             </div>
             <div class="col-2">
-            @if(Auth::guard('web')->check()) <!-- check if if student is enrolled -->
-                <button class="btn btn-danger"> Enroll</button>
+            @if(Auth::guard('web')->check())
+             <!-- check if student is enrolled -->
+                @if(\DB::table('enrollments')->where('channels_id', $channel_rec->channel_id)->where('stu_id', Auth::user()->id)->first())
+                    @foreach($enrollments as $enrollment)
+                        @if($enrollment->stu_id == Auth::user()->id)
+                            <?php $enrollId = $enrollment->id;?>       
+                        @endif
+                    @endforeach
+                    <form type="hidden" method="post" action="{{route('enrollments.destroy', $enrollId)}}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"> Unenroll</button>
+                    </form>
+                @else
+                    <form method="post" action="{{route('enrollments.store')}}">
+                    @csrf
+                        <input type="hidden" name="stuId" value="{{Auth::user()->id}}"/>
+                    @csrf
+                        <input type="hidden" name="channelId" value="{{$channel_rec->channel_id}}"/>
+                        <button type="submit" class="btn btn-danger"> Enroll</button>
+                    </form>
+                @endif
             @endif
             </div>
         </div> 

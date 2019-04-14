@@ -49,4 +49,6 @@ Route::get('get-video/{video}', 'TopicUploadController@getVideo')->name('getVide
 //reviews
 Route::resource('channel_reviews', 'ChannelReviewController');
 
-
+//enrollments
+Route::post('/enroll', 'EnrollmentsController@enroll')->name('enroll.create');
+Route::resource('enrollments', 'EnrollmentController');

@@ -8,6 +8,7 @@ use App\Course;
 use App\ChannelTopic;
 use App\University;
 use App\TopicUpload;
+use App\Enrollment;
 use Auth;
 class ChannelController extends Controller
 {
@@ -86,7 +87,9 @@ class ChannelController extends Controller
 
         $topics = ChannelTopic::where('channels_id', $id)->get();
         $channel_rec = Channel::where('channel_id', $id)->first();
-        return view('/tutor-channel', compact('channel_rec', 'topics'));
+        $enrollments= Enrollment::where('channels_id', $id)->get();
+
+        return view('/tutor-channel', compact('channel_rec', 'topics', 'enrollments'));
     }
     /**
      * Show the form for editing the specified resource.
