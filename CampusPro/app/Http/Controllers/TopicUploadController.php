@@ -68,14 +68,6 @@ class TopicUploadController extends Controller
         //
     }
 
-    public function getVideo(Video $video)
-    {
-        $name = $video->name;
-        $fileContents = Storage::disk('local')->get("uploads/videos/{$name}");
-        $response = Response::make($fileContents, 200);
-        $response->header('Content-Type', "video/mp4");
-        return $response;
-    }
 
     /**
      * Update the specified resource in storage.
@@ -89,23 +81,23 @@ class TopicUploadController extends Controller
         /**
          * @var UploadedFile
          */
-
-
             $file = $request->file('file');
             $name = $request->file('file')->getClientOriginalName();
-            $path = "..\\..\\Topic_File_Upload\\topic_file" . $name;
+            $name = str_replace(' ', '_', $name);
+            $stored_name = "topic_".$id."_file_" . $name;
+            $path = "..\\..\\Topic_File_Upload\\topic_".$id."_file_" . $name;
             $path = str_replace("\\", DIRECTORY_SEPARATOR, $path);
             $size = Input::file('file')->getSize();
-            $description = " ";
+            $ext = $request->file('file')->extension();
 
-            $file->storePubliclyAs('Topic_File_Uploads', "topic_file_" . $name, 'public');
+            $file->storePubliclyAs('Topic_File_Uploads', "topic_".$id."_file_" . $name, 'public');
 
             \DB::table('topic_uploads')->insert(
-                ['filename' => $name,
+                ['filename' => $stored_name,
                     'src' => $path,
                     'size' => $size,
                     'topic_id' => $id,
-                    'description' => $description,
+                    'extension' => $ext,
                 ]);
 
             return back();

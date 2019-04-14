@@ -86,10 +86,10 @@ class ChannelController extends Controller
     
     public function channelPage($id) //displays channel page 
     {
-
+        $topic_uploads = TopicUpload::all();
         $topics = ChannelTopic::where('channels_id', $id)->get();
         $channel_rec = Channel::where('channel_id', $id)->first();
-        return view('/tutor-channel', compact('channel_rec', 'topics'));
+        return view('/tutor-channel', compact('channel_rec', 'topics', 'topic_uploads'));
     }
     /**
      * Show the form for editing the specified resource.

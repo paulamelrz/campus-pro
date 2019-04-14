@@ -152,16 +152,31 @@
                                         </div>
                                         @endif
 
-                                        set up a for each to go through each entry in the db that matches the topic id
+                                        @foreach($topic_uploads as $topic_upload)
 
-                                            set up an if to determine which view is required (audio/video/pdf)
-                                           <video width="480" height="360" controls autoplay>
-                                               <source src="{{asset('Topic_File_Uploads/movie.mp4')}}" type="video/mp4">
-                                               <source src="{{asset('Topic_File_Uploads/movie.ogg')}}" type="video/ogg">
-                                               Your browser does not support the video tag.
-                                           </video>
+                                           @if($topic_upload->topic_id == $topic->id)
 
-                                        <!-- <iframe width="420" height="315" src="//www.youtube.com/embed/mBCizetiYEU" frameborder="0" allowfullscreen></iframe> -->
+                                               @if($topic_upload->extension == "mp4")
+                                                   <video width="480" height="360" controls>
+                                                       <source src="{{asset('Topic_File_Uploads/'.$topic_upload->filename)}}" type="video/mp4">
+                                                       <source src="{{asset('Topic_File_Uploads/'.$topic_upload->filename)}}" type="video/ogg">
+                                                       Your browser does not support the video tag.
+                                                   </video>
+                                                    @endif
+                                                   @if($topic_upload->extension == "mpga")
+                                                       <audio width="480" height="360" preload="auto" controls>
+                                                           <source src="{{asset('Topic_File_Uploads/'.$topic_upload->filename)}}" type="audio/mp3">
+                                                           Your browser does not support the audio tag.
+                                                       </audio>
+                                                       <br>
+                                                   @endif
+                                                   @if($topic_upload->extension == "pdf")
+                                                       <object data="{{asset('Topic_File_Uploads/'.$topic_upload->filename)}}" type="application/pdf" width="480" height="360">
+                                                           <p>Alternative text - include a link <a href="{{print $topic_upload->src}}">to the PDF!</a></p>
+                                                       </object>
+                                                   @endif
+                                                @endif
+                                        @endforeach
                                     </div>
 
                                     <div>
