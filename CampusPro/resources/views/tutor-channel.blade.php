@@ -1,13 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- <script> //shows content when tab link is pressed
-    $(document).ready(function(){
-    $(".nav-tabs a").click(function(){
-        $(this).tab('show');
-     });
-    });
-</script> -->
 
 <br>
 <div class="container">
@@ -309,11 +302,41 @@
                             <div class="row">
                                     <div class="col-sm-9">
                                         <div class="review-block-rate">
-                                                <span><i class="text-warning fa fa-star"></i></span>
-                                                <span><i class="text-warning fa fa-star"></i></span>
-                                                <span><i class="text-warning fa fa-star"></i></span>
-                                                <span><i class="text-warning fa fa-star"></i></span>
-                                                <span><i class="text-warning fa fa-star-half-alt"></i></span>
+                                        
+                                        <form class="rating">
+                                                <label>
+                                                    <input type="radio" name="stars" value="1" />
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="stars" value="2" />
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="stars" value="3" />
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>   
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="stars" value="4" />
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="stars" value="5" />
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                </label>
+                                                
+                                            </form>
+                
                                         </div>
                                         <div class="review-block-title">this was nice in buy</div>
                                         <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
@@ -321,7 +344,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-success">I am a student</button>
+                        
                     @endif		
                     </div>	
                    
