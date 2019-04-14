@@ -25,6 +25,9 @@ class Channel extends Model
         return $this->hasMany('App\ChannelReview');
     }
 
+    public function enrollment(){
+        return $this->hasMany('App\Enrollment');
+    }
     
 
 }

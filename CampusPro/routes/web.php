@@ -22,11 +22,16 @@ Route::prefix('tutor')->group(function(){
     Route::get('/', 'TutorController@index')->name('tutor');
 });
 //channel routes
-Route::get('/channel-page{id}', 'ChannelController@channelPage')->name('channel.page');
-Route::resource('channels','ChannelController');
+    //both tutor and student can view channel pages
+    Route::get('/channel-page{id}', 'ChannelController@channelPage')->name('channel.page')->middleware('auth:tutor,web');
+    
+    //only tutors can CRUD channels
+    Route::resource('channels','ChannelController')->middleware('auth:tutor');
+
 //courses routes
 Route::get('/course', 'CourseController@index');
 Route::post('/create-course', 'CourseController@store');
+
 //channel topic routes
 Route::resource('topics','ChannelTopicController');
 
@@ -44,4 +49,6 @@ Route::get('get-video/{video}', 'TopicUploadController@getVideo')->name('getVide
 //reviews
 Route::resource('channel_reviews', 'ChannelReviewController');
 
-
+//enrollments
+Route::post('/enroll', 'EnrollmentsController@enroll')->name('enroll.create');
+Route::resource('enrollments', 'EnrollmentController');

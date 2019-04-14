@@ -1,19 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- <script> //shows content when tab link is pressed
-    $(document).ready(function(){
-    $(".nav-tabs a").click(function(){
-        $(this).tab('show');
-     });
-    });
-</script> -->
 
 <br>
 <div class="container">
 @if(session('topic-success')!= NULL)
     <div class="alert alert-success" role="alert">
         {{ session()->get('topic-success') }}
+    </div>
+@endif
+@if(session('enroll-success')!= NULL)
+    <div class="alert alert-success" role="alert">
+        {{ session()->get('enroll-success') }}
+    </div>
+@endif
+@if(session('unenroll-success')!= NULL)
+    <div class="alert alert-warning" role="alert">
+        {{ session()->get('unenroll-success') }}
     </div>
 @endif
 @if(session('textarea-success')!= NULL)
@@ -52,7 +55,29 @@
                 </div>                
             </div>
             <div class="col-2">
-                <!-- Only show for students <button class="btn btn-danger">Enroll</button> -->
+            @if(Auth::guard('web')->check())
+             <!-- check if student is enrolled -->
+                @if(\DB::table('enrollments')->where('channels_id', $channel_rec->channel_id)->where('stu_id', Auth::user()->id)->first())
+                    @foreach($enrollments as $enrollment)
+                        @if($enrollment->stu_id == Auth::user()->id)
+                            <?php $enrollId = $enrollment->id;?>       
+                        @endif
+                    @endforeach
+                    <form type="hidden" method="post" action="{{route('enrollments.destroy', $enrollId)}}">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"> Unenroll</button>
+                    </form>
+                @else
+                    <form method="post" action="{{route('enrollments.store')}}">
+                    @csrf
+                        <input type="hidden" name="stuId" value="{{Auth::user()->id}}"/>
+                    @csrf
+                        <input type="hidden" name="channelId" value="{{$channel_rec->channel_id}}"/>
+                        <button type="submit" class="btn btn-danger"> Enroll</button>
+                    </form>
+                @endif
+            @endif
             </div>
         </div> 
         <!-- Tabs Nav -->
@@ -100,6 +125,8 @@
                                             <a class="card-link" href="#topic{{$topic->id}}">{{$topic->title}}</a>
                                         </div>
                                     @endforeach
+
+                                  @if(Auth::guard('tutor')->check())
                                     <div class="card-header addTopic">
                                         <a style="color:white; display:block;" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Topic</a>
                                         <form method="POST" action="{{ route('topics.store') }}" style="display:none;">
@@ -117,6 +144,7 @@
                                             <button id="cancel" class="btn btn-secondary" type="button"> Cancel</button>
                                         </form>
                                     </div>
+                                  @endif
                                     
                             </div>
                         </div>
@@ -140,7 +168,7 @@
                                             <button method="put" action="{{route('topics.update', $topic->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-edit"></i> Edit text
                                             </button> 
-                                        @else
+                                        @elseif(Auth::guard('tutor')->check())
 
                                         <div class="addText">
                                             <a style="color:white; display:block; width:50%;" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Text</a>
@@ -149,6 +177,21 @@
                                                 <button id="save" type="submit" class="btn btn-success"> Save</button>
                                                 <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
                                             </form>
+                                        </div>
+                                        <div>
+
+                                            {!! Form::open(
+                                                array(
+                                                    'method' => 'PUT',
+                                                    'route' => array('topic_uploads.update',$topic->id) ,
+                                                    'novalidate' => 'novalidate',
+                                                    'files' => true)) !!}
+
+                                            <div class="form-group">
+                                                {!! Form::file('file', null) !!}
+                                                {!! Form::submit('Upload') !!}
+                                            </div>
+                                            {!! Form::close() !!}
                                         </div>
                                         @endif
 
@@ -179,21 +222,7 @@
                                         @endforeach
                                     </div>
 
-                                    <div>
-
-                                        {!! Form::open(
-                                            array(
-                                                'method' => 'PUT',
-                                                'route' => array('topic_uploads.update',$topic->id) ,
-                                                'novalidate' => 'novalidate',
-                                                'files' => true)) !!}
-
-                                        <div class="form-group">
-                                            {!! Form::file('file', null) !!}
-                                            {!! Form::submit('Upload') !!}
-                                        </div>
-                                        {!! Form::close() !!}
-                                    </div>
+                                   
                                 </div>
                             </div>
                             @endforeach
@@ -310,11 +339,60 @@
                                 </div>
                             </div>
                         </div>
-                    </div>	
-                    <!-- If a student is logged in, show Leave a Review form-->
+                         <!-- If a student is logged in, show Leave a Review form-->
                     @if(Auth::guard('web')->check())
-                        <button class="btn btn-success">I am a student</button>
+                        <br><br>
+                        <h5> Write your review!</h5>
+                        <div class="review-block">
+                            <div class="row">
+                                    <div class="col-sm-9">
+                                        <div class="review-block-rate">
+                                        
+                                        <form class="rating">
+                                                <label>
+                                                    <input type="radio" name="stars" value="1" />
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="stars" value="2" />
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="stars" value="3" />
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>   
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="stars" value="4" />
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="stars" value="5" />
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                    <span class="icon"><i class="fa fa-star"></i></span>
+                                                </label>
+                                                
+                                            </form>
+                
+                                        </div>
+                                        <div class="review-block-title">this was nice in buy</div>
+                                        <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                        
                     @endif		
+                    </div>	
+                   
                 </div>
                    
                 </div>
@@ -356,20 +434,8 @@ $(document).ready(function(){
         $('.addText form').hide();
         $('.addText a').show();
     });
-    //topic links navigation
-
-    // $(".topics a").click(function(){
-        
-    //     function showOne(id) {
-    //     $('.topic-content').(id);
-    //     }
-
-    //     var topicid = $(this).attr('href');
-    //     console.log(topicid);
-    //     showOne(topicid);
-
-    // });  
-
+    
+//topic links navigation
 $('.topic-content').not('#topic1').css("display", "none");
 $('.topics a').click(function(event) {
   event.preventDefault();
