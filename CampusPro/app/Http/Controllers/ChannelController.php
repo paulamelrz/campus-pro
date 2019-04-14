@@ -11,10 +11,7 @@ use App\TopicUpload;
 use Auth;
 class ChannelController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:tutor');
-    }
+  
     protected function validator(array $data)
     {
         return Validator::make($data, [

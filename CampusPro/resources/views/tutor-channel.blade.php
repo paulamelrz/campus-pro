@@ -52,7 +52,9 @@
                 </div>                
             </div>
             <div class="col-2">
-                <!-- Only show for students <button class="btn btn-danger">Enroll</button> -->
+            @if(Auth::guard('web')->check()) <!-- check if if student is enrolled -->
+                <button class="btn btn-danger"> Enroll</button>
+            @endif
             </div>
         </div> 
         <!-- Tabs Nav -->
@@ -100,6 +102,8 @@
                                             <a class="card-link" href="#topic{{$topic->id}}">{{$topic->title}}</a>
                                         </div>
                                     @endforeach
+
+                                  @if(Auth::guard('tutor')->check())
                                     <div class="card-header addTopic">
                                         <a style="color:white; display:block;" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Topic</a>
                                         <form method="POST" action="{{ route('topics.store') }}" style="display:none;">
@@ -117,6 +121,7 @@
                                             <button id="cancel" class="btn btn-secondary" type="button"> Cancel</button>
                                         </form>
                                     </div>
+                                  @endif
                                     
                             </div>
                         </div>
@@ -140,7 +145,7 @@
                                             <button method="put" action="{{route('topics.update', $topic->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-edit"></i> Edit text
                                             </button> 
-                                        @else
+                                        @elseif(Auth::guard('tutor')->check())
 
                                         <div class="addText">
                                             <a style="color:white; display:block; width:50%;" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Text</a>
@@ -149,6 +154,21 @@
                                                 <button id="save" type="submit" class="btn btn-success"> Save</button>
                                                 <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
                                             </form>
+                                        </div>
+                                        <div>
+
+                                            {!! Form::open(
+                                                array(
+                                                    'method' => 'PUT',
+                                                    'route' => array('topic_uploads.update',$topic->id) ,
+                                                    'novalidate' => 'novalidate',
+                                                    'files' => true)) !!}
+
+                                            <div class="form-group">
+                                                {!! Form::file('file', null) !!}
+                                                {!! Form::submit('Upload') !!}
+                                            </div>
+                                            {!! Form::close() !!}
                                         </div>
                                         @endif
 
@@ -160,21 +180,7 @@
                                         <!-- <iframe width="420" height="315" src="//www.youtube.com/embed/mBCizetiYEU" frameborder="0" allowfullscreen></iframe> -->
                                     </div>
 
-                                    <div>
-
-                                        {!! Form::open(
-                                            array(
-                                                'method' => 'PUT',
-                                                'route' => array('topic_uploads.update',$topic->id) ,
-                                                'novalidate' => 'novalidate',
-                                                'files' => true)) !!}
-
-                                        <div class="form-group">
-                                            {!! Form::file('file', null) !!}
-                                            {!! Form::submit('Upload') !!}
-                                        </div>
-                                        {!! Form::close() !!}
-                                    </div>
+                                   
                                 </div>
                             </div>
                             @endforeach
@@ -291,11 +297,30 @@
                                 </div>
                             </div>
                         </div>
-                    </div>	
-                    <!-- If a student is logged in, show Leave a Review form-->
+                         <!-- If a student is logged in, show Leave a Review form-->
                     @if(Auth::guard('web')->check())
+                        <br><br>
+                        <h5> Write your review!</h5>
+                        <div class="review-block">
+                            <div class="row">
+                                    <div class="col-sm-9">
+                                        <div class="review-block-rate">
+                                                <span><i class="text-warning fa fa-star"></i></span>
+                                                <span><i class="text-warning fa fa-star"></i></span>
+                                                <span><i class="text-warning fa fa-star"></i></span>
+                                                <span><i class="text-warning fa fa-star"></i></span>
+                                                <span><i class="text-warning fa fa-star-half-alt"></i></span>
+                                        </div>
+                                        <div class="review-block-title">this was nice in buy</div>
+                                        <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
                         <button class="btn btn-success">I am a student</button>
                     @endif		
+                    </div>	
+                   
                 </div>
                    
                 </div>
@@ -337,20 +362,8 @@ $(document).ready(function(){
         $('.addText form').hide();
         $('.addText a').show();
     });
-    //topic links navigation
-
-    // $(".topics a").click(function(){
-        
-    //     function showOne(id) {
-    //     $('.topic-content').(id);
-    //     }
-
-    //     var topicid = $(this).attr('href');
-    //     console.log(topicid);
-    //     showOne(topicid);
-
-    // });  
-
+    
+//topic links navigation
 $('.topic-content').not('#topic1').css("display", "none");
 $('.topics a').click(function(event) {
   event.preventDefault();
