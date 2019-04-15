@@ -31,6 +31,8 @@ Route::prefix('tutor')->group(function(){
 
     //all users can view list of channels
     Route::get('/channels', 'ChannelController@index')->middleware('guest');
+    Route::get('/stuChannels', 'ChannelController@index')->middleware('auth:web');
+    
 
 //courses routes
 Route::get('/course', 'CourseController@index');
@@ -48,6 +50,7 @@ Route::resource('topics', 'ChannelTopicController');
 
 //Topic Uploads route
 Route::resource('topic_uploads', 'TopicUploadController');
+Route::get('get-video/{video}', 'TopicUploadController@getVideo')->name('getVideo');
 
 //reviews
 Route::resource('channel_reviews', 'ChannelReviewController');

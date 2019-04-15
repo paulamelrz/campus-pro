@@ -112,7 +112,7 @@ $(document).ready(function(){
          @else
             <div class="col-md-12" style="padding-top:20px;">
                 <h6>You are currently not enrolled on any channels. </h6>
-                <br><br><button type="button" class="btn btn-secondary">Find Channels</button>
+                <br><br><a type="button" href="/stuChannels" class="btn btn-secondary">Find Channels</a>
                 <div class="col-md-12" style="padding-top:20px;">
             </div>
          @endif

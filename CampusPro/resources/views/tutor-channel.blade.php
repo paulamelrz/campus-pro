@@ -480,51 +480,22 @@
                     @if(Auth::guard('web')->check())
                         <br><br>
                         <h5> Write your review!</h5>
-                        <div class="review-block">
-                            <div class="row">
-                                    <div class="col-sm-9">
-                                        <div class="review-block-rate">
-                                        
-                                        <form class="rating">
-                                                <label>
-                                                    <input type="radio" name="stars" value="1" />
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="stars" value="2" />
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="stars" value="3" />
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                    <span class="icon"><i class="fa fa-star"></i></span>   
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="stars" value="4" />
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                </label>
-                                                <label>
-                                                    <input type="radio" name="stars" value="5" />
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                    <span class="icon"><i class="fa fa-star"></i></span>
-                                                </label>
-                                                
-                                            </form>
-                
-                                        </div>
-                                        <div class="review-block-title">this was nice in buy</div>
-                                        <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                                    </div>    
-                                </div>
-                            </div>
+                        <div class="card-header addTopic">
+                                        <a style="color:white; display:block;" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Topic</a>
+                                        <form method="POST" action="{{ route('topics.store') }}" style="display:none;">
+                                            @csrf
+                                            <input id="channel_id" type="hidden" name="channel_id" value="{{$channel_rec->channel_id}}">
+                                            <input id="topic" placeholder="Enter new topic here" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="topic" value="{{ old('topic') }}" required autofocus>
+
+                                            @if ($errors->has('topic'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong> {{ $errors->first('topic') }} </strong>
+                                                </span>
+                                            @endif
+                                            <br>
+                                            <button id="add" class="btn btn-success" type="submit"> Add</button>
+                                            <button id="cancel" class="btn btn-secondary" type="button"> Cancel</button>
+                                        </form>
                         </div>
                         
                     @endif		
