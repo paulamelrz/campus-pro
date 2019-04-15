@@ -52,9 +52,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+
                         <li class="nav-item active">
-                            <a class="nav-link navlink scroll" href="{{ url('/') }}">Home</a>
+                        @if(Auth::user())
+                            <a class="nav-link navlink scroll" href="/home">Home</a>
+                        @else
+                            <a class="nav-link navlink scroll" href="/">Home</a>
+                        @endif
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link navlink scroll"href="/channels">Channels</a>
                         </li>
