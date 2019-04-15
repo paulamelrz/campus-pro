@@ -117,37 +117,6 @@ $(document).ready(function(){
                                     <i style='font-size:15px;float:right;' class="fas fa-edit"></i>
                                 </button>  
 
-
-                    <div class="form-group">
-                        @csrf
-                        <label for="channel_name">Channel Name:</label>
-                        <input type="text" class="form-control" id="channel_name" placeholder="Enter channel name" name="channel_name" required/>
-                    </div>
-                    <div class="form-group">
-                        @csrf
-                        <label for="course_code">Course Code:</label>
-                        <input type="text" class="form-control" id="course_code" placeholder="e.g. COMP3365" name="course_code" required/>
-                    </div>
-                    <div class="form-group">
-                        @csrf
-                        <label for="university">University:</label>
-                        <!--
-                            <div class="form-group">
-                                <input type="text" name="country_name" id="country_name" class="form-control input-lg" placeholder="Enter Country Name" />
-                                <div id="countryList">
-                                </div>
-                            </div>
-                            {{ csrf_field() }}
-                            </div>
-                        -->
-                        <input type="text" class="form-control" id="university" placeholder="e.g. University of the West Indies Cave Hill" name="university" required/>
-                        <div id="universityList"></div>
-                    </div>
-                    <div class="form-group">
-                        @csrf
-                        <label for="description">Description:</label>
-                        <textarea type="text" class="form-control" id="description" placeholder="What's this channel about?" name="description"></textarea>
-
                                 <form class="delete-channel" style="float:right;" type="hidden" method="post" action="{{route('channels.destroy', $channel->channel_id)}}">    
                                     @csrf
                                     @method('DELETE')
@@ -156,7 +125,6 @@ $(document).ready(function(){
                                 </form>
                             </div>    
                         </div>
-
                     </div>
                 </div>           
             @endforeach
@@ -229,79 +197,9 @@ $(document).ready(function(){
             </div>
         </div>
         </div>
-        <form class="card" style="margin-bottom:30px;">
-        <div class="card-body">
-        <h3 class="card-title">Edit Profile</h3>
-        <div class="row">
-            <div class="col-md-6">
-            <div class="form-group mb-4">
-                <label class="form-label">Name</label>
-                <input type="text" placeholder="Full Name" value="FirstName LastName" class="form-control">
-            </div>
-            </div>
-            <div class="col-sm-6 col-md-6">
-            <div class="form-group mb-4">
-                <label class="form-label">Email address</label>
-                <input type="email" placeholder="Email" class="form-control">
-            </div>
-            </div>
-            <div class="col-sm-6 col-md-6">
-            <div class="form-group mb-4">
-                <label class="form-label">University</label>
-                <input type="text" placeholder="University" class="form-control">
-            </div>
-            </div>
-            <div class="col-md-6">
-            <div class="form-group mb-4">
-                <label class="form-label">Country</label>
-                <select class="form-control custom-select">
-                <option value="">UK</option>
-                <option value="">US</option>
-                </select>
-            </div>
-            </div>
-            <div class="col-md-12">
-            <div class="form-group mb-0">
-                <label class="form-label">Bio</label>
-                <textarea rows="5" placeholder="Here can be your description" value="" class="form-control">My name is Tummika, give me money, take my course</textarea>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="card-footer text-right">
-        <button type="submit" class="btn btn-primary">Update Profile</button>
-        </div>
-        </form>
         </div>
     </div>
 </div>
 
-<script>
-$(document).ready(function(){
-
- $('#country_name').keyup(function(){ 
-        var query = $(this).val();
-        if(query != '')
-        {
-         var _token = $('input[name="_token"]').val();
-         $.ajax({
-          url:"{{ route('autocomplete.fetch') }}",
-          method:"POST",
-          data:{query:query, _token:_token},
-          success:function(data){
-           $('#countryList').fadeIn();  
-                    $('#countryList').html(data);
-          }
-         });
-        }
-    });
-
-    $(document).on('click', 'li', function(){  
-        $('#country_name').val($(this).text());  
-        $('#countryList').fadeOut();  
-    });  
-
-});
-</script>
  
 @endsection

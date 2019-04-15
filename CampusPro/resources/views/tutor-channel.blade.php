@@ -2,7 +2,7 @@
 
 @section('content')
 
-<br>
+<div class="container-fluid channelpage" style="padding-top:40px;">
 <div class="container">
 @if(session('topic-success')!= NULL)
     <div class="alert alert-success" role="alert">
@@ -26,7 +26,7 @@
 @endif
 
     <header class="bg-secondary align-items-center">
-        <img style="height:auto; width:100%;"src="images/banner.png">
+        <img style="height:auto; width:100%;" src="images/banner.png">
     </header>
     <div class="jumbotron">
         <div class="row">
@@ -36,23 +36,21 @@
                 $mypath = \DB::table('channels')->select('thumbnail')->where('channel_id', $channel_rec->channel_id)->first();
                 ?>
                 @if($mypath->thumbnail != NULL)
-                    <img src="<?php echo $mypath->thumbnail; ?>" alt="thumbnail" class="mr-3 mt-3 ml-4 rounded-circle" style="height:100px; width:100px; float:left;">
+                    <img src="<?php echo $mypath->thumbnail; ?>" alt="thumbnail" class="card-profile-img" style="height:100px; width:100px; float:left;">
                 @else
-                <img src="../images/imgPlaceholder.png" alt="thumbnail" class="mr-3 mt-3 ml-4 rounded-circle" style="height:100px; width:110px; float:left;">
+                <img src="../images/imgPlaceholder.png" alt="thumbnail" class="card-profile-img" style="height:100px; width:110px; float:left;">
                 @endif
                 
             </div>
             <div class="col-8">
-                <h2 class="float:right; ">{{$channel_rec->channel_name}}</h2>
-                <p># enrollments</p><br>
-                <div class="row">
-                    <div class="col-sm">
-                        <p>tutor name</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>Avg Review star star star..</p>                
-                    </div>
-                </div>                
+                <h2 class="float:right; ">Math</h2>
+                                    <span><i class="text-warning fa fa-star"></i></span>
+                                    <span><i class="text-warning fa fa-star"></i></span>
+                                    <span><i class="text-warning fa fa-star"></i></span>
+                                    <span><i class="text-warning fa fa-star"></i></span>
+                                    <span><i class="text-warning fa fa-star-half-alt"></i></span>  
+                   <p>Tummika Thomas</p>              
+                   <p># enrollments</p><br>
             </div>
             <div class="col-2">
             @if(Auth::guard('web')->check())
@@ -264,66 +262,6 @@
                         4. Tutor can like, flag, remove any comment
 
                     -->
-                    <div class="row">
-
-                        <!-- Discussion sidebar -->
-                        <div class="col-md-3">
-                            <div class="card mb-2">
-                                <div style="color:white;" class="card-header bg-dark">
-                                    <h5>Discussion</h5>
-                                </div>
-                                @foreach($topics as $topic)
-                                    <div class="card-header topics">
-                                        <a class="card-link" href="#topic{{$topic->id}}">{{$topic->title}}</a>
-                                    </div>
-                                @endforeach
-
-                                @if(Auth::guard('tutor')->check())
-                                    <div class="card-header addTopic">
-                                        <a style="color:white; display:block;" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Thread</a>
-                                        <form method="POST" action="{{ route('topics.store') }}" style="display:none;">
-                                            @csrf
-                                            <input id="channel_id" type="hidden" name="channel_id" value="{{$channel_rec->channel_id}}">
-                                            <input id="topic" placeholder="Enter new topic here" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="topic" value="{{ old('topic') }}" required autofocus>
-
-                                            @if ($errors->has('topic'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong> {{ $errors->first('topic') }} </strong>
-                                                </span>
-                                            @endif
-                                            <br>
-                                            <button id="add" class="btn btn-success" type="submit"> Add</button>
-                                            <button id="cancel" class="btn btn-secondary" type="button"> Cancel</button>
-                                        </form>
-                                    </div>
-                                @endif
-
-                            </div>
-                        </div>
-
-                        <!-- Discussion Content -->
-                        <div class="col-md-9">
-                            @foreach($topics as $topic)
-                                <div id="topic{{$topic->id}}" class="topic-content">
-                                    <div class="card mb-2 ">
-
-                                        <div class="card-header">
-                                            <h5>{{$topic->title}}</h5>
-                                        </div>
-                                        <div class="card-body">
-
-
-
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            @endforeach
-                            <br><br><br>
-                        </div>
-                    </div>
-
                 </div>
                 <!-- Reviews Tab -->
                 <div id="reviews" class="container tab-pane fade">
