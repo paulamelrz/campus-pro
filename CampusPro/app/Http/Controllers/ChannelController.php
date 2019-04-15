@@ -12,6 +12,7 @@ use App\University;
 use App\TopicUpload;
 use App\Enrollment;
 use Auth;
+use Carbon\Carbon;
 class ChannelController extends Controller
 {
   
@@ -31,7 +32,10 @@ class ChannelController extends Controller
      */
     public function index()
     {
-        //
+        $new_channels = Channel::all()->sortbyDesc('created_at')->take(4);
+        $all_channels = Channel::all();
+        return view('channels', compact('new_channels', 'all_channels'));
+        
     }
     /**
      * Show the form for creating a new resource.
