@@ -50,8 +50,8 @@
                                     <span><i class="text-warning fa fa-star"></i></span>
                                     <span><i class="text-warning fa fa-star"></i></span>
                                     <span><i class="text-warning fa fa-star-half-alt"></i></span>  
-                   <p>Tummika Thomas</p>              
-                   <p># enrollments</p><br>
+                   <p>by: {{$owner->name}}</p>              
+                   <p>{{$enrolled}} enrollments</p><br>
             </div>
             <div class="col-2">
             @if(Auth::guard('web')->check())
