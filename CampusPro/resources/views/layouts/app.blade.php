@@ -101,7 +101,11 @@
                                         {{ __('Logout') }}
                                     </a>
 
+                                    @if(Auth::guard('web')->check())
+                                    <a class="dropdown-item" href="{{ route('student') }}">Dashboard</a>
+                                    @elseif(Auth::guard('tutor')->check())
                                     <a class="dropdown-item" href="{{ route('tutor') }}">Dashboard</a>
+                                    @endif
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
