@@ -8,6 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>CampusPro - @yield('title')</title>
+    <link rel = "icon" href = "{{ asset('images/logo.jfif') }}"  type = "image/x-icon"> 
+          
+    </head> 
+      
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -112,6 +116,17 @@
             @yield('content')
      
     </div>
+
+    <!-- Footer containing site map and social media links-->
+    <div class="footer">
+            <ul>
+                <li><a href="#" class="footer-text">Home</a></li>
+                <li><a href="#" class="footer-text">Courses</a></li>
+                <li><a href="#" class="footer-text">Login</a></li>
+                <li><a href="#" class="footer-text">Register</a></li>
+            </ul>
+            <hr>
+        </div>
 </body>
 </html>
 
