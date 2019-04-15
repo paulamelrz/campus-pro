@@ -48,7 +48,6 @@ Route::resource('topics', 'ChannelTopicController');
 
 //Topic Uploads route
 Route::resource('topic_uploads', 'TopicUploadController');
-Route::get('get-video/{video}', 'TopicUploadController@getVideo')->name('getVideo');
 
 //reviews
 Route::resource('channel_reviews', 'ChannelReviewController');
