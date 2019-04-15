@@ -90,6 +90,19 @@ class ChannelTopicController extends Controller
         //
     }
 
+    public function editText(Request $request, $id)
+    {
+        \DB::table('topics')
+            ->where('id', $id)
+            ->update(
+                [
+                    'textarea' => $request->topicText
+
+                ]);
+
+        return back();
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -99,7 +112,16 @@ class ChannelTopicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        \DB::table('topics')
+            ->where('id', $id)
+            ->update(
+                [
+                    'textarea' => $request->topicText
+
+                ]);
+
+        return back();
+
     }
 
     /**

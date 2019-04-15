@@ -48,6 +48,7 @@ Route::resource('topics', 'ChannelTopicController');
 
 //Topic Uploads route
 Route::resource('topic_uploads', 'TopicUploadController');
+Route::put('/editText{id}', 'ChannelTopicController@editText')->name('topictext.edit');
 
 //reviews
 Route::resource('channel_reviews', 'ChannelReviewController');
