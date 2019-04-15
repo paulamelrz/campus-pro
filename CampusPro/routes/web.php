@@ -44,13 +44,12 @@ Route::resource('topics', 'ChannelTopicController');
 
 //Topic Uploads route
 Route::resource('topic_uploads', 'TopicUploadController');
-Route::get('get-video/{video}', 'TopicUploadController@getVideo')->name('getVideo');
 
 //reviews
 Route::resource('channel_reviews', 'ChannelReviewController');
 
 //enrollments
-Route::post('/enroll', 'EnrollmentsController@enroll')->name('enroll.create');
+Route::post('/enroll', 'EnrollmentController@enroll')->name('enroll.create');
 Route::resource('enrollments', 'EnrollmentController');
 
 //autocomplete
