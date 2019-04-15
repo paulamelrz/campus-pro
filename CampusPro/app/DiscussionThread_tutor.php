@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class DiscussionThread_tutor extends Model
 {
+    public $table = 'discussion_thread_tutors';
+    public $fillable = ['channel_id','replies_count','title', 'body', 'best_reply_id', 'flag'];
 
     public function topic(){
-        return $this->belongsto('App\ChannelTopic');
+        return $this->belongsto('App\Channel');
     }
 }

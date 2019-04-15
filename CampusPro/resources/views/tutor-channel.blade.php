@@ -43,7 +43,8 @@
                 
             </div>
             <div class="col-8">
-                <h2 class="float:right;">{{$channel_rec->channel_name}}</h2>
+
+                <h2 class="float:right; ">{{$channel_rec->channel_name}}</h2>
                                     <span><i class="text-warning fa fa-star"></i></span>
                                     <span><i class="text-warning fa fa-star"></i></span>
                                     <span><i class="text-warning fa fa-star"></i></span>
@@ -275,6 +276,131 @@
                         4. Tutor can like, flag, remove any comment
 
                     -->
+                    <div class="row">
+
+                        <!-- Discussion sidebar -->
+                        <div class="col-md-3">
+                            <div class="card mb-2">
+                                <div style="color:white;" class="card-header bg-dark">
+                                    <h5>Threads</h5>
+                                </div>
+                                @foreach($topics as $topic)
+                                    <div class="card-header topics">
+                                        <a class="card-link" href="#topic{{$topic->id}}">{{$topic->title}}</a>
+                                    </div>
+                                @endforeach
+
+                                @if(Auth::guard('tutor')->check())
+                                    <div class="card-header addTopic">
+                                        
+                                            <button data-toggle="modal" data-target="#create-thread" class="btn btn-success" type="submit"> Create thread</button>
+                                @endif           
+                                            <!-- Create Thread modal-->
+                                            <div class="modal fade chan-modal  mx-auto" id="create-thread">
+                                                <div class="modal-dialog  modal-dialog-centered modal-lg">
+                                                    <div class="modal-content">
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header createchannel-header">
+                                                            <h4 class="modal-title" style="color:white;">Create Thread</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">x</button>
+                                                        </div>
+
+                                                        <!-- Modal Body-->
+                                                        <div class="modal-body">
+                                                            @if (session('thread-success'))
+                                                                <div class="alert alert-success" role="alert">
+                                                                    {{ session()->get('thread-success') }}
+                                                                </div>
+                                                            @endif
+                                                            @if (session('thread-error'))
+                                                                <div class="alert alert-danger" role="alert">
+                                                                    {!! session()->get('thread-error') !!}
+                                                                </div>
+                                                            @endif
+                                                            @if(Auth::guard('web')->check())
+                                                                <form method="post" action="{{route('discussion_thread.store')}}">
+                                                                    <!-- channel_id (hidden) + title + body of thread -->
+                                                                    <div class="form-group">
+                                                                        @csrf
+                                                                        <input type="hidden" class="form-control" id="channelId" value="{{$channel_rec->channel_id}}" name="channelId"/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        @csrf
+                                                                        <input type="text" class="form-control" id="threadTitle" placeholder="Title" name="threadTitle" required/>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        @csrf
+                                                                        <input type="text" class="form-control" id="threadBody" placeholder="Title" name="threadBody" required/>
+                                                                    </div>
+
+                                                                    <div class="row justify-content-md-center">
+                                                                    <div class="col-sm-3">
+                                                                    <input type="submit" class="btn" style="background-color:#2DC7B2 !important; color:white;" value="Submit"/>
+                                                                    </div>
+
+                                                                    <div class="col-sm-3">
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                    </div>
+                                                                    </div>
+
+                                                                </form>
+                                                            
+                                                            @elseif(Auth::guest('tutor'))
+                                                            <form method="post" action="{{route('discussion_thread_tutors.store')}}">
+                                                                    <div class="form-group">
+                                                                        @csrf
+                                                                        <input type="hidden" class="form-control" id="channelId" value="{{$channel_rec->channel_id}}" name="channelId"/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        @csrf
+                                                                        <input type="text" class="form-control" id="threadTitle" placeholder="Title" name="threadTitle" required/>
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        @csrf
+                                                                        <input type="text" class="form-control" id="threadBody" placeholder="Title" name="threadBody" required/>
+                                                                    </div>
+
+                                                                    <div class="row justify-content-md-center">
+                                                                    <div class="col-sm-3">
+                                                                    <input type="submit" class="btn" style="background-color:#2DC7B2 !important; color:white;" value="Submit"/>
+                                                                    </div>
+
+                                                                    <div class="col-sm-3">
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            @endif
+                                                          
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>      
+                            </div>
+                        </div>
+
+                        <!-- Discussion Content -->
+                        <div class="col-md-9">
+
+                                <div id="" class="topic-content">
+                                    <div class="card mb-2 ">
+
+                                        <div class="card-header">
+                                            <h5></h5>
+                                        </div>
+                                        <div class="card-body">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <br><br><br>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- Reviews Tab -->
                 <div id="reviews" class="container tab-pane fade">

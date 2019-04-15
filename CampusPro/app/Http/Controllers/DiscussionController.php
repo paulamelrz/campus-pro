@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class DiscussionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:tutor,web');
+    }
     /**
      * Display a listing of the resource.
      *

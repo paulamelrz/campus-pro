@@ -56,7 +56,7 @@
                             <a class="nav-link navlink scroll" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link navlink scroll"href="index.php?controller=Courses">Channels</a>
+                            <a class="nav-link navlink scroll"href="/channels">Channels</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link navlink scroll" href="index.php?controller=Tutors">Tutors</a>
@@ -100,7 +100,11 @@
                                         {{ __('Logout') }}
                                     </a>
 
+                                    @if(Auth::guard('web')->check())
+                                    <a class="dropdown-item" href="{{ route('student') }}">Dashboard</a>
+                                    @elseif(Auth::guard('tutor')->check())
                                     <a class="dropdown-item" href="{{ route('tutor') }}">Dashboard</a>
+                                    @endif
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
