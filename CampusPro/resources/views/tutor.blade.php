@@ -55,11 +55,11 @@ $(document).ready(function(){
             @endif
         
                 <form action = "{{route('file.store')}}" method="post" enctype="multipart/form-data">
-                {{csrf_field()}}
-                <input type="hidden" name="context-tag" value="tutor-profile">
-                <input type="file" name="file" id="file"  class="choosefile">
-                <label data-toggle="tooltip" data-placement="bottom" title="Choose File" for="file"><i class="far fa-image fa-2x" ></i></label>
-                <button data-toggle="tooltip" data-placement="bottom" title="Upload image" type="submit" class="uploadpro"><i class="fas fa-upload fa-lg"></i></button>
+                    {{csrf_field()}}
+                    <input type="hidden" name="context-tag" value="tutor-profile">
+                    <input type="file" name="file" id="file"  class="choosefile">
+                    <label data-toggle="tooltip" data-placement="bottom" title="Choose File" for="file"><i class="far fa-image fa-2x" ></i></label>
+                    <button data-toggle="tooltip" data-placement="bottom" title="Upload image" type="submit" class="uploadpro"><i class="fas fa-upload fa-lg"></i></button>
                 </form>
 
         <h4 class="mb-3">{{Auth::user()->name}} @if(Auth::user()->verified == 1)<img src="images/verified.png" style="width:30px;">@endif</h4>
