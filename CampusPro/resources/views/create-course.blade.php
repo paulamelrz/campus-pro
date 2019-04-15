@@ -16,7 +16,7 @@
                 @endif
                 @if (session('error'))
                     <div class="alert alert-danger" role="alert">
-                        {{ session()->get('error')}}
+                        {!! session()->get('error')!!}
                     </div>
                 @endif
                 <div class="card-body">
