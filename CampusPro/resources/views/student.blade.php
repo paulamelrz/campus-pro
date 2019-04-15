@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 <div class="container-fluid profilebody">
 
-
+<br><br>
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
@@ -83,43 +83,39 @@ $(document).ready(function(){
         <div class="col-lg-8">
         <div class="card card-mychannel">
         <div class="header-profile">
-                    <h4 style="float:left;">My Courses</h4>
+                    <h4 style="float:left;">My Channels</h4>
         </div>
         <div class="list-group card-list-group channels">
         <div class="row">
-
+         @if($channels!=NULL)
+            @foreach($channels as $channel)
                 <div class="col-md-4  mx-auto" style="padding-top:20px;">
 
-                    <div class="card ">
+                    <div class="card">
 
                     <img class="card-img-top" src="images/thumbnail.png" alt="channel thumbnail">
                         <div class="card-body">
                             <div class="card-title">
-                                <a href="#">Math</a>
+                                <a href="{{route('channel.page', $channel->channel_id)}}">{{$channel->channel_name}}</a>
                         </div>
                             <div class="card-text">
-                                <p>Math is fun</p>
+                                <p>{{$channel->description}}</p>
                             </div>
                         </div>
 
                         <div class="card-footer" style="background-color:white !important">
-                            <div>
-                                <button class="btn btn-secondary">
-                                    <i style='font-size:15px;float:right;' class="fas fa-edit"></i>
-                                </button>  
-
-                                <form class="delete-channel" style="float:right;" type="hidden" method="post" action="">    
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"><i style='float:right;' class="fas fa-trash-alt"></i></button>
-
-                                </form>
-                            </div>    
+                   
                         </div>
                     </div>
                 </div>           
-
-
+            @endforeach
+         @else
+            <div class="col-md-12" style="padding-top:20px;">
+                <h6>You are currently not enrolled on any channels. </h6>
+                <br><br><button type="button" class="btn btn-secondary">Find Channels</button>
+                <div class="col-md-12" style="padding-top:20px;">
+            </div>
+         @endif
             </div>
 
             

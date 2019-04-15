@@ -63,7 +63,7 @@ class CourseController extends Controller
         //check if course exists, if it does, return error message. Otherwise add to db
         if (true == ( Course::where('course_code', $request->course_code)->where('uni_id', $uni_rec->id)->exists() ) )
         {
-            return redirect()->back()->with('error', 'This course already exists! Click <a href="/tutor/">here</a> to create a channel for it');
+            return redirect()->back()->with('error', 'This course already exists! Click <a href="/tutor"> here</a> to create a channel for it');
         }
         else
             {
