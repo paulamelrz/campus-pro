@@ -14,6 +14,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::get('/student', 'StudentController@index')->name('student');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('tutor')->group(function(){
     Route::get('/login', 'Auth\TutorLoginController@showLoginForm')->name('tutor.login');
     Route::post('/login', 'Auth\TutorLoginController@login')->name('tutor.login.submit');
@@ -47,7 +48,6 @@ Route::resource('topics', 'ChannelTopicController');
 
 //Topic Uploads route
 Route::resource('topic_uploads', 'TopicUploadController');
-Route::get('get-video/{video}', 'TopicUploadController@getVideo')->name('getVideo');
 
 //reviews
 Route::resource('channel_reviews', 'ChannelReviewController');

@@ -28,7 +28,7 @@
     <header class="bg-secondary align-items-center">
         <img style="height:auto; width:100%;" src="images/banner.png">
     </header>
-    <div class="jumbotron">
+    <div class="jumbotron" style="background-color:rgba(255, 255, 255, 0.664) !important">
         <div class="row">
             <div class="col-2">
 
@@ -36,13 +36,14 @@
                 $mypath = \DB::table('channels')->select('thumbnail')->where('channel_id', $channel_rec->channel_id)->first();
                 ?>
                 @if($mypath->thumbnail != NULL)
-                    <img src="<?php echo $mypath->thumbnail; ?>" alt="thumbnail" class="card-profile-img" style="height:100px; width:100px; float:left;">
+                    <img src="<?php echo $mypath->thumbnail; ?>" alt="thumbnail" class="card-profile-img" style="height:140px; width:auto; float:left;">
                 @else
-                <img src="../images/imgPlaceholder.png" alt="thumbnail" class="card-profile-img" style="height:100px; width:110px; float:left;">
+                    <img src="../images/imgPlaceholder.png" alt="thumbnail" class="card-profile-img" style="height:140px; width:auto; float:left;">
                 @endif
                 
             </div>
             <div class="col-8">
+
                 <h2 class="float:right; ">{{$channel_rec->channel_name}}</h2>
                                     <span><i class="text-warning fa fa-star"></i></span>
                                     <span><i class="text-warning fa fa-star"></i></span>
@@ -100,8 +101,8 @@
           </li>
     </ul>   
     </div>
-    <div class="row justify-content-center">
-        <div class="col-md-11">
+    <div class="row ">
+        <div class="col-md-12">
             <div class="tab-content"><br>      
                 <!-- Content Tab -->
                 <div id="content" class="container tab-pane active">
@@ -154,8 +155,45 @@
                                 <div class="card mb-2 ">
                                 
                                     <div class="card-header">
-                                        <h5>{{$topic->title}}</h5>
+                                        <h4 style="text-align:center;">{{$topic->title}}</h4>
+                                        <div class="row">
+                                        <div class="col-sm-2">
+                                            {!! Form::open(
+                                                array(
+                                                    'method' => 'PUT',
+                                                    'route' => array('topic_uploads.update',$topic->id) ,
+                                                    'novalidate' => 'novalidate',
+                                                    'files' => true)) !!}
+
+                                            <div class="form-group">
+                                                <div class="input-group">  
+                                                    {!! Form::file('file', array('class' => 'choosefile','name' => 'file','id'=>'file')) !!}
+                                                    <label style="margin-top:15px !important;" data-toggle="tooltip" data-placement="bottom" title="Choose File" for="file"><i class="far fa-file-alt fa-2x" ></i></label>
+                                                    <span class="input-group-btn" style="margin-top:20px;">
+                                                        {!! Form::button('<i class="fas fa-upload fa-lg"></i>', ['class'=>'uploadpro', 'type'=>'submit']) !!}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            {!! Form::close() !!}
+                                        </div>
+                                        <div class="col">
+                                            @if(Auth::guard('tutor')->check())
+
+                                                <div class="addText" style="margin-top:10px;">
+                                                    <a style="color:white; display:block; width:50%;" class="btn btn-success addtext"><i class="fas fa-plus-circle"></i> Add Text</a>
+                                                    <form style="display:none;" type="text" method="put" action="">
+                                                        <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topic-text" required></textarea><br>
+                                                        <button id="save" type="submit" class="btn btn-success"> Save</button>
+                                                        <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
+                                                    </form>
+                                                </div>
+
+                                            @endif
+                                        </div>
+                                        </div>
                                     </div>
+
+
                                     <div class="card-body">
                                         @if($topic->textarea != NULL)
 
@@ -166,31 +204,7 @@
                                             <button method="put" action="{{route('topics.update', $topic->id)}}" class="btn btn-secondary">
                                                 <i class="fas fa-edit"></i> Edit text
                                             </button> 
-                                        @elseif(Auth::guard('tutor')->check())
 
-                                        <div class="addText">
-                                            <a style="color:white; display:block; width:50%;" class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Text</a>
-                                            <form style="display:none;" type="text" method="put" action="">
-                                                <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topic-text" required></textarea><br>
-                                                <button id="save" type="submit" class="btn btn-success"> Save</button>
-                                                <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
-                                            </form>
-                                        </div>
-                                        <div>
-
-                                            {!! Form::open(
-                                                array(
-                                                    'method' => 'PUT',
-                                                    'route' => array('topic_uploads.update',$topic->id) ,
-                                                    'novalidate' => 'novalidate',
-                                                    'files' => true)) !!}
-
-                                            <div class="form-group">
-                                                {!! Form::file('file', null) !!}
-                                                {!! Form::submit('Upload') !!}
-                                            </div>
-                                            {!! Form::close() !!}
-                                        </div>
                                         @endif
 
                                         @foreach($topic_uploads as $topic_upload)
@@ -518,6 +532,7 @@
                    
                 </div>
                    
+                </div>
                 <!-- Info Tab -->
                 <div id="info" class="container tab-pane fade">
                     <h4>Channel Info</h4><br>

@@ -405,6 +405,11 @@ img
     background-image: url("../images/notebook-336634_1280.jpg");
 }
 
+.addtext
+{
+    width:20% !important;
+}
+
 /*Footer*/
 
 ul
