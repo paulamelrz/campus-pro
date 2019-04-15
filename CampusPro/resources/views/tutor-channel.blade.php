@@ -43,7 +43,7 @@
                 
             </div>
             <div class="col-8">
-                <h2 class="float:right; ">Math</h2>
+                <h2 class="float:right; ">{{$channel_rec->channel_name}}</h2>
                                     <span><i class="text-warning fa fa-star"></i></span>
                                     <span><i class="text-warning fa fa-star"></i></span>
                                     <span><i class="text-warning fa fa-star"></i></span>
