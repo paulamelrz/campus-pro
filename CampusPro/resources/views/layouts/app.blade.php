@@ -10,6 +10,7 @@
     <title>CampusPro - @yield('title')</title>
     <link rel = "icon" href = "{{ asset('images/logo.jfif') }}"  type = "image/x-icon"> 
           
+    </head> 
       
 
     <!-- Scripts -->
@@ -128,5 +129,3 @@
         </div>
 </body>
 </html>
-
-
