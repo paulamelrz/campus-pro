@@ -197,49 +197,7 @@ $(document).ready(function(){
             </div>
         </div>
         </div>
-        <form class="card" style="margin-bottom:30px;">
-        <div class="card-body">
-        <h3 class="card-title">Edit Profile</h3>
-        <div class="row">
-            <div class="col-md-6">
-            <div class="form-group mb-4">
-                <label class="form-label">Name</label>
-                <input type="text" placeholder="Full Name" value="FirstName LastName" class="form-control">
-            </div>
-            </div>
-            <div class="col-sm-6 col-md-6">
-            <div class="form-group mb-4">
-                <label class="form-label">Email address</label>
-                <input type="email" placeholder="Email" class="form-control">
-            </div>
-            </div>
-            <div class="col-sm-6 col-md-6">
-            <div class="form-group mb-4">
-                <label class="form-label">University</label>
-                <input type="text" placeholder="University" class="form-control">
-            </div>
-            </div>
-            <div class="col-md-6">
-            <div class="form-group mb-4">
-                <label class="form-label">Country</label>
-                <select class="form-control custom-select">
-                <option value="">UK</option>
-                <option value="">US</option>
-                </select>
-            </div>
-            </div>
-            <div class="col-md-12">
-            <div class="form-group mb-0">
-                <label class="form-label">Bio</label>
-                <textarea rows="5" placeholder="Here can be your description" value="" class="form-control">My name is Tummika, give me money, take my course</textarea>
-            </div>
-            </div>
-        </div>
-        </div>
-        <div class="card-footer text-right">
-        <button type="submit" class="btn btn-primary">Update Profile</button>
-        </div>
-        </form>
+    
         </div>
     </div>
 </div>

@@ -187,6 +187,7 @@ img
 {
     object-fit: fill;
 }
+
 .carousel .item h4 {
 	font-size: 18px;
 }
@@ -220,7 +221,7 @@ img
 	width: 35px;
 	background:  rgba(255, 36, 58, 0.794);	
     margin: auto 0;
-    border-radius: 30px;
+    border-radius: 10px;
 }
 .carousel .carousel-control:hover {
 	background: #FF243A;
@@ -255,28 +256,6 @@ img
 	border-radius: 50%;
     background-color: #FF243A;
 }
-.carousel-indicators li {	
-	background: rgba(0, 0, 0, 0.965);
-}
-.carousel-indicators li.active {	
-	background: rgba(0, 0, 0, 0.6);
-}
-
-
-.star-rating li {
-	padding: 0;
-}
-.star-rating i {
-	font-size: 14px;
-	color: #ffc000;
-}
-
-
-/*Row 4 Carousel*/
-
-
-
-
 
 
 /*Tutor Dashboard*/
@@ -318,7 +297,7 @@ img
 .card-profile .header-profile {
     height: 9rem;
     background-size: cover;
-    background-position: center center
+    background-position: center;
 }
 
 .card-profile-img {
@@ -326,7 +305,7 @@ img
     margin-top: -6rem;
     margin-bottom: 1rem;
     border: 3px solid #fff;
-    border-radius: 100%
+    border-radius: 100%;
 }
 
 .avatar {
@@ -340,28 +319,28 @@ img
     text-align: center;
     color: #868e96;
     font-weight: 600;
-    vertical-align: bottom
+    vertical-align: bottom;
 }
 
 .avatar.avatar-md {
     width: 3rem;
-    height: 3rem
+    height: 3rem;
 }
 
 .avatar.avatar-lg {
     width: 4rem;
-    height: 4rem
+    height: 4rem;
 }
 
 .avatar.avatar-xl {
     width: 5rem;
-    height: 5rem
+    height: 5rem;
 }
 
 .avatar.avatar-xxl {
     width: 7rem;
     height: 7rem;
-    min-width: 7rem
+    min-width: 7rem;
 }
 
 .header-profile:first-child {
@@ -416,6 +395,14 @@ img
 .createchannel-header
 {
     background-color:rgb(226, 66, 82) !important;
+}
+
+
+/*Channel Page */
+
+.channelpage
+{
+    background-image: url("../images/notebook-336634_1280.jpg");
 }
 
 /*Footer*/
@@ -476,7 +463,7 @@ ul
 .logininput
 {
     margin-top:15px;
-    border-bottom: 1px grey solid
+    border-bottom: 1px grey solid;
 }
 
 .logincard
@@ -626,8 +613,22 @@ video {
 
   .rating label input:focus:not(:checked) ~ .icon:last-child {
     color: #000;
-    text-shadow: 0 0 5px rgba(255, 196, 0, 0.986);;
+    text-shadow: 0 0 5px rgba(255, 196, 0, 0.986);
   }
+
+
+  .animated {
+    -webkit-transition: height 0.2s;
+    -moz-transition: height 0.2s;
+    transition: height 0.2s;
+}
+
+.stars
+{
+    margin: 20px 0;
+    font-size: 24px;
+    color: #d17581;
+}
 
 object {
     width: 100%;
