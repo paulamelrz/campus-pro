@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Enrollment;
+use App\Channel;
 
 class EnrollmentController extends Controller
 {
@@ -54,7 +55,8 @@ class EnrollmentController extends Controller
             'channels_id' => $request['channelId'],
             'stu_id'=> $request['stuId']
         ]);
-
+        $new_enrollval = Enrollment::where('id', $request['channelId'])->count();
+        \DB::table('channels')->where('channel_id', $request['channelId'])->update(['enrollments'=>$new_enrollval]);
         return redirect()->back()->with('enroll-success', 'You have enrolled on this channel!');
     }
 
@@ -101,6 +103,8 @@ class EnrollmentController extends Controller
     public function destroy($id)
     {
         Enrollment::where('id', $id)->delete();
+        $new_enrollval = Enrollment::where('id', $id)->count();
+        Channel::where('channel_id', $id)->update(['enrollments'=>$new_enrollval]); 
        
         return redirect()->back()->with('unenroll-success', 'You have unenrolled from this channel');
     }
