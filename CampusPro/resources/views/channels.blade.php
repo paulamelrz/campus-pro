@@ -35,9 +35,9 @@
                             @endforeach
                         </div>   
                         <br>
-                        <h4>Most Popular</h4>
+                        <h4>All Channels</h4>
                         <div class="row">
-                        @foreach($new_channels as $channel)
+                        @foreach($all_channels as $channel)
                             <div class="col-md-3">
                                 <div class="card mb-4">
                                     <div class="img-box">
