@@ -31,6 +31,8 @@ Route::prefix('tutor')->group(function(){
 
     //all users can view list of channels
     Route::get('/channels', 'ChannelController@index')->middleware('guest');
+    Route::get('/stuChannels', 'ChannelController@index')->middleware('auth:web');
+    
 
 //courses routes
 Route::get('/course', 'CourseController@index');

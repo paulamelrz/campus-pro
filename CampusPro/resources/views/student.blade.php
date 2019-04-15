@@ -89,6 +89,10 @@ $(document).ready(function(){
         <div class="row">
          @if($channels!=NULL)
             @foreach($channels as $channel)
+                @foreach($channel as $channel_rec)
+                
+                 @foreach($channel_rec as $ch)
+                 
                 <div class="col-md-4  mx-auto" style="padding-top:20px;">
 
                     <div class="card">
@@ -96,10 +100,10 @@ $(document).ready(function(){
                     <img class="card-img-top" src="images/thumbnail.png" alt="channel thumbnail">
                         <div class="card-body">
                             <div class="card-title">
-                                <a href="{{route('channel.page', $channel->channel_id)}}">{{$channel->channel_name}}</a>
+                                <a href="{{route('channel.page', $channel->channel_id)}}">{{$ch->channel_name}}</a>
                         </div>
                             <div class="card-text">
-                                <p>{{$channel->description}}</p>
+                                <p>{{$ch->description}}</p>
                             </div>
                         </div>
 
@@ -107,12 +111,15 @@ $(document).ready(function(){
                    
                         </div>
                     </div>
-                </div>           
+                </div>  
+                
+                @endforeach
+                @endforeach         
             @endforeach
          @else
             <div class="col-md-12" style="padding-top:20px;">
                 <h6>You are currently not enrolled on any channels. </h6>
-                <br><br><button type="button" class="btn btn-secondary">Find Channels</button>
+                <br><br><a type="button" href="/stuChannels" class="btn btn-secondary">Find Channels</a>
                 <div class="col-md-12" style="padding-top:20px;">
             </div>
          @endif
