@@ -28,6 +28,9 @@ Route::prefix('tutor')->group(function(){
     //only tutors can CRUD channels
     Route::resource('channels','ChannelController')->middleware('auth:tutor');
 
+    //all users can view list of channels
+    Route::get('/channels', 'ChannelController@index')->middleware('guest');
+
 //courses routes
 Route::get('/course', 'CourseController@index');
 Route::post('/create-course', 'CourseController@store');
@@ -50,9 +53,15 @@ Route::get('get-video/{video}', 'TopicUploadController@getVideo')->name('getVide
 Route::resource('channel_reviews', 'ChannelReviewController');
 
 //enrollments
-Route::post('/enroll', 'EnrollmentsController@enroll')->name('enroll.create');
+Route::post('/enroll', 'EnrollmentController@enroll')->name('enroll.create');
 Route::resource('enrollments', 'EnrollmentController');
 
 //autocomplete
 Route::get('/autocomplete', 'AutocompleteController@index');
 Route::post('/autocomplete/fetch', 'AutocompleteController@fetch')->name('autocomplete.fetch');
+
+//tutor thread
+Route::resource('discussion_thread_tutors', 'DiscussionController');
+
+//student thread
+Route::resource('discussion_thread', 'DiscussionController');

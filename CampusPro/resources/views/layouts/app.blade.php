@@ -57,7 +57,7 @@
                             <a class="nav-link navlink scroll" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link navlink scroll"href="index.php?controller=Courses">Channels</a>
+                            <a class="nav-link navlink scroll"href="/channels">Channels</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link navlink scroll" href="index.php?controller=Tutors">Tutors</a>
