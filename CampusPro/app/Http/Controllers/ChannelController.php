@@ -1,5 +1,7 @@
 <?php
 namespace App\Http\Controllers;
+use App\DiscussionThread;
+use App\DiscussionThread_tutor;
 use App\Http\Requests\ChannelCreateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -84,6 +86,8 @@ class ChannelController extends Controller
     
     public function channelPage($id) //displays channel page 
     {
+     //   $stu_threads = DiscussionThread::where('channel_id', $id)->get();
+     //   $tutor_threads = DiscussionThread_tutor::where('channel_id', $id)->get();
         $topic_uploads = TopicUpload::all();
         $topics = ChannelTopic::where('channels_id', $id)->get();
         $channel_rec = Channel::where('channel_id', $id)->first();
