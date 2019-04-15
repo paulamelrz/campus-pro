@@ -393,7 +393,6 @@
                    
                 </div>
                    
-                </div>
                 <!-- Info Tab -->
                 <div id="info" class="container tab-pane fade">
                     <h4>Channel Info</h4><br>

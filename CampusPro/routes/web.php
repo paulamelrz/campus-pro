@@ -52,3 +52,7 @@ Route::resource('channel_reviews', 'ChannelReviewController');
 //enrollments
 Route::post('/enroll', 'EnrollmentsController@enroll')->name('enroll.create');
 Route::resource('enrollments', 'EnrollmentController');
+
+//autocomplete
+Route::get('/autocomplete', 'AutocompleteController@index');
+Route::post('/autocomplete/fetch', 'AutocompleteController@fetch')->name('autocomplete.fetch');
