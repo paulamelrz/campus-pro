@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ChannelReview;
+use Auth;
 
 class ChannelReviewController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:web');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +40,16 @@ class ChannelReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate
+        ChannelReview::create([
+            'channels_id'=>$request['channelId'],
+            'stu_id'=> Auth::user()->id,
+            'title'=>$request['title'],
+            'comment'=>$request['comment'],
+            'stars'=>$request['stars']
+        ]);
+        return redirect()->back()->with('review-success', 'Your review was posted successfully!');
+
     }
 
     /**

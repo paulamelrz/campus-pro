@@ -19,6 +19,9 @@ class CreateDiscussionRepliesTutorsTable extends Migration
             $table->integer('tutor_id');
             $table->text('body');
             $table->timestamps();
+
+            $table->foreign('thread_id')->references('id')->on('discussion_thread_tutors')->onDelete('cascade');
+
         });
     }
 

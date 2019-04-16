@@ -19,6 +19,10 @@ class CreateDiscussionRepliesTable extends Migration
             $table->integer('student_id');
             $table->text('body');
             $table->timestamps();
+
+            $table->foreign('thread_id')->references('id')->on('discussion_threads')->onDelete('cascade');
+
+
         });
     }
 

@@ -517,79 +517,59 @@
                             @if(Auth::guard('web')->check())
                           
                                     <h5> Write a review!</h5>
-                                        <form method="POST" action="" >
-                                            @csrf
-                                            <textarea rows="4" cols="50" placeholder="What is your expericence with this channel?"></textarea><br>
-                                            <select style="margin-bottom:10px;">
-                                                <option >Rate this channel out of 5</option>
-                                                <option >0</option>
-                                                <option >1</option>
-                                                <option >2</option>
-                                                <option >3</option>
-                                                <option >4</option>
-                                                <option >5</option>
-                                            </select>
+                                        <form method="POST" action="{{route('channel_reviews.store')}}" >
+                                            <div class="form-group">
+                                                @csrf
+                                                <input type="hidden" id="channelId" name="channelId" value="{{$channel_rec->channel_id}}"/>
+                                            </div>
+                                            <div class="form-group">
+                                                @csrf
+                                                <input style="width:70% !important;" type="text" name="title" id="title" placeholder="Title of Review" required/><br><br>
+                                            </div>
+                                            <div class="form-group">
+                                                @csrf
+                                                <textarea style="width:70% !important;" id="comment" name="comment" rows="4" cols="50" placeholder="What is your expericence with this channel?"></textarea><br>
+                                            </div>
+                                            <div class="form-group">
+                                                @csrf
+                                                <label>Rate this channel out of 5</label>
+                                            
+                                                <select id="stars" name="stars" style="margin-bottom:10px;">
+                                                    <option value="0">0</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
+                                            </div>
                                             <br>
                                             <button id="add" class="btn btn-success" type="submit">Submit Review</button>
                                         </form>
                             @endif	
                             <hr/>
-                             <div class="row">
+                            @foreach($reviews as $review)
+                                <div class="row">
                                     <div class="col-sm-3">
                                         <img src="images/profile.png" alt="profile pic" class="mr-3 mt-3 rounded-circle" style="width:50px;">
+                                        {{\DB::}}
                                         <div class="review-block-name"><a href="#">nktailor</a></div>
-                                        <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+                                        <div class="review-block-date">{{$review->created_at}}</div>
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="review-block-rate">
-                                                <span><i class="text-warning fa fa-star"></i></span>
-                                                <span><i class="text-warning fa fa-star"></i></span>
-                                                <span><i class="text-warning fa fa-star"></i></span>
-                                                <span><i class="text-warning fa fa-star"></i></span>
-                                                <span><i class="text-warning fa fa-star-half-alt"></i></span>
+                                                @for($i=1; $i<=$review->stars; $i++)
+                                                    <span><i class="text-warning fa fa-star"></i></span>
+                                                @endfor
                                         </div>
-                                        <div class="review-block-title">this was nice in buy</div>
-                                        <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
+                                        <div class="review-block-title">{{$review->title}}</div>
+                                        <div class="review-block-description">{{$review->comment}}</div>
                                     </div>    
                                 </div>
                                 <hr/>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <img src="images/profile.png" alt="profile pic" class="mr-3 mt-3 rounded-circle" style="width:50px;">
-                                        <div class="review-block-name"><a href="#">nktailor</a></div>
-                                        <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <div class="review-block-rate">
-                                         <span><i class="text-warning fa fa-star"></i></span>
-                                         <span><i class="text-warning fa fa-star"></i></span>
-                                         <span><i class="text-warning fa fa-star"></i></span>
-                                         <span><i class="text-warning fa fa-star"></i></span>
-                                         <span><i class="text-warning fa fa-star-half-alt"></i></span>
-                                        </div>
-                                        <div class="review-block-title">this was nice in buy</div>
-                                        <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                                    </div>
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <img src="images/profile.png" alt="profile pic" class="mr-3 mt-3 rounded-circle" style="width:50px;">
-                                        <div class="review-block-name"><a href="#">nktailor</a></div>
-                                        <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <div class="review-block-rate">
-                                        <span><i class="text-warning fa fa-star"></i></span>
-                                        <span><i class="text-warning fa fa-star"></i></span>
-                                        <span><i class="text-warning fa fa-star"></i></span>
-                                        <span><i class="text-warning fa fa-star"></i></span>
-                                        <span><i class="text-warning fa fa-star-half-alt"></i></span>
-                                    </div>
-                                    <div class="review-block-title">this was nice in buy</div>
-                                    <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-                                </div>
-                            </div>
+                            @endforeach
+                            
+                            
                         </div>
                         	
                     </div>	
