@@ -52,7 +52,7 @@ class DiscussionController extends Controller
     {
         //validate
         //store tutor thread if tutor is logged in
-        if(Auth::guard('tutor')){
+        if(Auth::guard('tutor')->check()){
             DiscussionThread_tutor::create([
                 'tutor_id'=> Auth::user()->id,
                 'channel_id'=> $request['channelId'],
@@ -61,7 +61,7 @@ class DiscussionController extends Controller
             ]);
         }
         //store student thread if student is logged in
-        elseif(Auth::guard('web')){
+        elseif(Auth::guard('web')->check()){
             DiscussionThread::create([
                 'student_id'=> Auth::user()->id,
                 'channel_id'=> $request['channelId'],

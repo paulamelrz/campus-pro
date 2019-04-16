@@ -398,7 +398,7 @@
                                                         <div class="modal-body">
                                                             
                                                             @if(Auth::guard('web')->check())
-                                                                <form method="post" action="{{route('discussion_thread.store')}}">
+                                                                <form method="post" action="{{route('discussion_thread_tutors.store')}}">
                                                                     <!-- channel_id (hidden) + title + body of thread -->
                                                                     <div class="form-group">
                                                                         @csrf
@@ -466,8 +466,8 @@
                                 </div>
                                 @if($stu_threads!=NULL)
                                     @foreach($stu_threads as $thread)
-                                        <div class="card-header threads">
-                                            <a class="card-link" href="#thread{{$tut_thread->id}}">{{$thread->title}}</a>
+                                        <div class="card-header stu-threads">
+                                            <a class="card-link" href="#stu-thread{{$thread->id}}">{{$thread->title}}</a>
                                         </div>
                                     @endforeach
                                 @endif                                       
@@ -490,6 +490,20 @@
                                         </div>
                                         <div style="text-align:center!important;" class="card-body bg-white">
                                         <p>{{$tut_thread->body}}</p>
+                                        </div>
+                                        <div class="card-footer bg-white">
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            @foreach($stu_threads as $thread)
+                                <div id="stu-thread{{$thread->id}}" class="stu-thread-content">
+                                    <div class="card mb-2">
+                                        <div class="card-header">
+                                            <h4 style="text-align:center;">{{$thread->title}}</h4>
+                                        </div>
+                                        <div style="text-align:center!important;" class="card-body bg-white">
+                                        <p>{{$thread->body}}</p>
                                         </div>
                                         <div class="card-footer bg-white">
                                         </div>
@@ -707,6 +721,20 @@ $('.threads a').click(function(event) {
   
 });
     
+$('.stu-thread-content').not('#stu-thread1').css("display", "none");
+$('.stu-threads a').click(function(event) {
+  event.preventDefault();
+  
+  // Toggle active class on tab buttons
+  $(this).parent().addClass("current");
+  $(this).parent().siblings().removeClass("current");
+  
+  // display only active tab content
+  var activeTab = $(this).attr("href");
+  $('.stu-thread-content').not(activeTab).css("display","none");
+  $(activeTab).fadeIn();
+  
+});
 }); 
 </script>
 @endsection
