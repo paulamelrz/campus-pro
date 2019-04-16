@@ -332,7 +332,7 @@
 
                 <!-- Resource Hub Tab -->
                 <div id="resource" class="container tab-pane fade">
-                    <h4>Resource Hub</h4><br>
+                    
                     <!--
                     1. Students and tutors can make posts
                     2. Posts ordered by date(in a feed) and tags
@@ -340,7 +340,7 @@
                     4. Tutors can remove any posts.
 
                     -->
-                    <img src="{{asset('/images/giphy.gif')}}">
+                    <img src="{{asset('/images/giphy.gif')}}"><br><br>
                 </div>
 
                 <!-- Dicussions Tab -->
