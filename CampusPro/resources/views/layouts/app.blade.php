@@ -62,6 +62,7 @@
                         </li>
                         
                         <li class="nav-item">
+
                         
                         @guest
                         <a class="nav-link navlink scroll" href="/channels">Channels</a>

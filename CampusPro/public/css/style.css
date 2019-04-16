@@ -58,8 +58,8 @@ nav
     padding-top: 50px;
     display:block;
     margin: auto;
-    height:500px;
-    background-image: url("../images/col2.jpg");
+    height:550px;
+    background-image: url("../images/home.jpg");
     background-size: cover;
 }
 
@@ -265,6 +265,7 @@ img
 .profilebody
 {
     background-image: url("../images/notebook-336634_1280.jpg");
+    background-size:cover;
     padding-top:50px;
 }
 
@@ -404,6 +405,7 @@ img
 .channelpage
 {
     background-image: url("../images/notebook-336634_1280.jpg");
+    background-size: cover;
 }
 
 .addtext
@@ -452,6 +454,7 @@ ul
 .loginbody 
 {
     background-image: url("../images/loginpage.jpg");
+    background-size: cover;
      padding-top: 50px;
 }
 

@@ -15,13 +15,13 @@ class CreateDiscussionRepliesTable extends Migration
     {
         Schema::create('discussion_replies', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('thread_id');
-            $table->integer('student_id');
+            $table->unsignedBigInteger('thread_id');
+            $table->unsignedInteger('student_id');
             $table->text('body');
             $table->timestamps();
 
             $table->foreign('thread_id')->references('id')->on('discussion_threads')->onDelete('cascade');
-
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
 
         });
     }
