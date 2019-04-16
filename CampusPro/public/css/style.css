@@ -60,6 +60,7 @@ nav
     margin: auto;
     height:500px;
     background-image: url("../images/col2.jpg");
+    background-size: cover;
 }
 
 .row1-head

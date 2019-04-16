@@ -27,11 +27,11 @@ class StudentController extends Controller
     public function index()
     {
         $enrollments = Enrollment::where('stu_id', Auth::user()->id)->get();
-        if(isset ($enrollments)){
+        if(isset ($enrollments[0])){
             $x = 0;
             foreach($enrollments as $enrollment)
             {
-                
+
                 $channels[$x] = Channel::where('channel_id', $enrollment->channels_id)->get();
                 $x++;
             }
