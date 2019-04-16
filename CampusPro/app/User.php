@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+
     use Notifiable;
     public $table = "students";
     public $timestamps = false;
@@ -29,4 +30,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function topic_2(){
+        return $this->hasMany('App\DiscussionReplies');
+    }
 }
