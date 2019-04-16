@@ -54,7 +54,7 @@ class DiscussionController extends Controller
         //store tutor thread if tutor is logged in
         if(Auth::guard('tutor')){
             DiscussionThread_tutor::create([
-                'student_id'=> Auth::user()->id,
+                'tutor_id'=> Auth::user()->id,
                 'channel_id'=> $request['channelId'],
                 'title'=> $request['threadTitle'],
                 'body'=> $request['threadBody']
