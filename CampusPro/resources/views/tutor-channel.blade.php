@@ -552,8 +552,8 @@
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <img src="images/profile.png" alt="profile pic" class="mr-3 mt-3 rounded-circle" style="width:50px;">
-                                        {{\DB::}}
-                                        <div class="review-block-name"><a href="#">nktailor</a></div>
+                                        <?php $student=\DB::table('students')->where('id', $review->stu_id)->first()?>
+                                        <div class="review-block-name"><a href="#">{{$student->name}}</a></div>
                                         <div class="review-block-date">{{$review->created_at}}</div>
                                     </div>
                                     <div class="col-sm-9">
@@ -579,13 +579,68 @@
                 </div>
                 <!-- Info Tab -->
                 <div id="info" class="container tab-pane fade">
-                    <h4>Channel Info</h4><br>
                     <!--
-                    
                     1. Display channel description. Allow tutor to edit
                     2. Display list of enrolled students
-
                     -->
+                    <div class="list-group card-list-group" >
+                        <div class="row justify-content-center h-100">   
+                            <div class="col-sm-6 mb-3 ">
+                                <div style="text-align:center!important;" class="card-header">
+                                    <h5>Channel Description</h5>
+                                </div>
+                                <div style="text-align:center!important;" class="card-body bg-white">
+                                    <p>{{$channel_rec->description}}</p>
+                                </div>
+                                <div class="card-footer bg-white">
+                                </div>     
+                            </div>
+                            <div class="col-sm-4 mb-3">
+                                <div style="text-align:center!important;" class="card-header">
+                                    <h5>Tutor Info</h5>
+                                </div>
+                                <div style="text-align:center!important;" class="card-body bg-white">
+                                    <p>Name: {{$owner->name}}</p><br>
+                                    <p>Email: {{$owner->email}}</p>
+                                </div> 
+                                <div class="card-footer bg-white">
+                                </div>     
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-sm-10">
+                                <div style="text-align:center!important;" class="card-header">
+                                    <h5>Enrolled Students</h5>
+                                </div> 
+                                <div class="card-body bg-white">
+                                <div class="row">
+                                   @foreach($enrollments as $enrollment)
+                                   @if($channel_rec->channel_id == $enrollment->channels_id)
+                                   
+                                        <div class="col-sm">
+                                            
+                                                
+                                                    <img src="images/profile.png" alt="profile pic" class="mr-3 mt-3 rounded-circle" style="width:50px;">
+                                                    <?php $student=\DB::table('students')->where('id', $enrollment->stu_id)->first()?>
+                                                    <div class="review-block-name"><a href="#">{{$student->name}}</a></div>
+                                                   
+                                                
+                                                  
+                                            
+                                        </div>
+                                    
+                                    @endif
+                                   @endforeach
+                                   </div>
+                                                                
+                                </div> 
+                                <div class="card-footer bg-white">
+                                                                
+                                </div>                             
+                               
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
