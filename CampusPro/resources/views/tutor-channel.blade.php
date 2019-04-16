@@ -155,26 +155,37 @@
                                     <div class="card-header">
                                         <h4 style="text-align:center;">{{$topic->title}}</h4>
                                         <div class="row">
-                                        <div class="col-sm-2">
-                                            {!! Form::open(
-                                                array(
-                                                    'method' => 'PUT',
-                                                    'route' => array('topic_uploads.update',$topic->id) ,
-                                                    'novalidate' => 'novalidate',
-                                                    'files' => true)) !!}
+                                        @if(Auth::guard('tutor')->check())
+                                            <div class="col-sm-2">
+                                                {!! Form::open(
+                                                    array(
+                                                        'method' => 'PUT',
+                                                        'route' => array('topic_uploads.update',$topic->id) ,
+                                                        'novalidate' => 'novalidate',
+                                                        'files' => true)) !!}
 
-                                            <div class="form-group">
-                                                <div class="input-group">  
-                                                    {!! Form::file('file', array('class' => 'choosefile','name' => 'file','id'=>'file')) !!}
-                                                    <label style="margin-top:15px !important;" data-toggle="tooltip" data-placement="bottom" title="Choose File" for="file"><i class="far fa-file-alt fa-2x" ></i></label>
-                                                    <span class="input-group-btn" style="margin-top:20px;">
-                                                        {!! Form::button('<i class="fas fa-upload fa-lg"></i>', ['class'=>'uploadpro', 'type'=>'submit']) !!}
-                                                    </span>
+                                                <div class="form-group">
+                                                    <div class="input-group">  
+                                                        {!! Form::file('file', array('class' => 'choosefile','name' => 'file','id'=>'file')) !!}
+                                                        <label style="margin-top:15px !important;" data-toggle="tooltip" data-placement="bottom" title="Choose File" for="file"><i class="far fa-file-alt fa-2x" ></i></label>
+                                                        <span class="input-group-btn" style="margin-top:20px;">
+                                                            {!! Form::button('<i class="fas fa-upload fa-lg"></i>', ['class'=>'uploadpro', 'type'=>'submit']) !!}
+                                                        </span>
+                                                    </div>
                                                 </div>
+                                                {!! Form::close() !!}
                                             </div>
-                                            {!! Form::close() !!}
-                                        </div>
+                                        @endif
                                         <div class="col">
+                                        @if($topic->textarea != NULL)
+                                                    
+                                            <p>
+                                                {{ $topic->textarea}}
+                                                <br>
+                                            </p>
+
+
+                                        @endif
                                             @if(Auth::guard('tutor')->check())
 
 
@@ -199,12 +210,6 @@
                                                         {!! Form::close() !!}
 
                                                         @else
-
-                                                        <p>
-                                                            {{ $topic->textarea}}
-                                                            <br>
-                                                        </p>
-
 
                                                             <button  data-toggle="modal" data-target="#edit" class="btn addchannel">
                                                                 <i class="fas fa-plus-circle"></i>Edit
@@ -451,7 +456,22 @@
                                             </div>
                                          
                             </div>
-                            <div class="card">
+                            <div class="card mb-2">
+                                <div style="color:white;" class="card-header bg-dark">
+                                    <h5>Student Threads</h5>
+                                </div>
+                                @if($stu_threads!=NULL)
+                                    @foreach($stu_threads as $thread)
+                                        <div class="card-header topics">
+                                            <a class="card-link" href="#thread{{$tut_thread->id}}">{{$thread->title}}</a>
+                                        </div>
+                                    @endforeach
+                                @endif                                       
+                                @if(Auth::guard('web')->check())
+                                    <div class="card-header addThread">
+                                        <button data-toggle="modal" data-target="#create-thread" class="btn btn-success" type="submit"> Create thread</button>
+                                    </div>
+                                @endif
                             </div>
 
                         </div>
@@ -491,8 +511,29 @@
                             </div>
                         </div>
                         <div class="col-sm-9">
-                        <hr/>
+                        
                         <div class="review-block">
+                             <!-- If a student is logged in, show Leave a Review form-->
+                            @if(Auth::guard('web')->check())
+                          
+                                    <h5> Write a review!</h5>
+                                        <form method="POST" action="" >
+                                            @csrf
+                                            <textarea rows="4" cols="50" placeholder="What is your expericence with this channel?"></textarea><br>
+                                            <select style="margin-bottom:10px;">
+                                                <option >Rate this channel out of 5</option>
+                                                <option >0</option>
+                                                <option >1</option>
+                                                <option >2</option>
+                                                <option >3</option>
+                                                <option >4</option>
+                                                <option >5</option>
+                                            </select>
+                                            <br>
+                                            <button id="add" class="btn btn-success" type="submit">Submit Review</button>
+                                        </form>
+                            @endif	
+                            <hr/>
                              <div class="row">
                                     <div class="col-sm-3">
                                         <img src="images/profile.png" alt="profile pic" class="mr-3 mt-3 rounded-circle" style="width:50px;">
@@ -550,29 +591,7 @@
                                 </div>
                             </div>
                         </div>
-                         <!-- If a student is logged in, show Leave a Review form-->
-                    @if(Auth::guard('web')->check())
-                        <br><br>
-                        <div class="card-header addTopic" style="border-radius:4px !important;">
-                        <h5> Write a review!</h5>
-                                        <form method="POST" action="" >
-                                            @csrf
-                                            <textarea rows="4" cols="50" placeholder="What is your expericence with this course?"></textarea><br>
-                                            <select style="margin-bottom:10px;">
-                                                <option >Rate this course out of 5</option>
-                                                <option >0</option>
-                                                <option >1</option>
-                                                <option >2</option>
-                                                <option >3</option>
-                                                <option >4</option>
-                                                <option >5</option>
-                                            </select>
-                                            <br>
-                                            <button id="add" class="btn btn-success" type="submit">Submit Review</button>
-                                        </form>
-                        </div>
-                        
-                    @endif		
+                        	
                     </div>	
                    
                 </div>

@@ -33,6 +33,7 @@ class ChannelController extends Controller
      */
     public function index()
     {
+        
         $new_channels = Channel::all()->sortbyDesc('created_at')->take(4);
         $all_channels = Channel::all();
         return view('channels', compact('new_channels', 'all_channels'));
