@@ -195,7 +195,7 @@
 
                                                             <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topicText" required></textarea><br>
                                                             <button id="save" type="submit" class="btn btn-success"> Save</button>
-                                                            <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
+                
 
 
                                                         {!! Form::close() !!}
@@ -339,7 +339,7 @@
 
                 <!-- Dicussions Tab -->
                 <div id="discussions" class="container tab-pane fade">
-                    <h4>Discussions</h4><br>
+                 <br>
                     <!--
                         1. Forum threads (topics) -> both students and tutors can create a thread
                         2. Forum posts + comments under each
@@ -353,14 +353,15 @@
                         <div class="col-md-3">
                             <div class="card mb-2">
                                 <div style="color:white;" class="card-header bg-dark">
-                                    <h5>Threads</h5>
+                                    <h5>Tutor Threads</h5>
                                 </div>
-                                @foreach($topics as $topic)
-                                    <div class="card-header topics">
-                                        <a class="card-link" href="#topic{{$topic->id}}">{{$topic->title}}</a>
-                                    </div>
-                                @endforeach
-
+                                @if(isset ($tutor_threads) )
+                                    @foreach($tutor_threads as $tut_thread)
+                                        <div class="card-header topics">
+                                            <a class="card-link" href="#thread{{$tut_thread->id}}">{{$tut_thread->title}}</a>
+                                        </div>
+                                    @endforeach
+                                @endif                                       
                                 @if(Auth::guard('tutor')->check())
                                     <div class="card-header addTopic">
                                         
@@ -418,7 +419,7 @@
 
                                                                 </form>
                                                             
-                                                            @elseif(Auth::guest('tutor'))
+                                                            @elseif(Auth::guard('tutor'))
                                                             <form method="post" action="{{route('discussion_thread_tutors.store')}}">
                                                                     <div class="form-group">
                                                                         @csrf
@@ -426,12 +427,12 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         @csrf
-                                                                        <input type="text" class="form-control" id="threadTitle" placeholder="Title" name="threadTitle" required/>
+                                                                        <input type="text" class="form-control" id="threadTitle" placeholder="Thread title" name="threadTitle" required/>
                                                                     </div>
 
                                                                     <div class="form-group">
                                                                         @csrf
-                                                                        <input type="text" class="form-control" id="threadBody" placeholder="Title" name="threadBody" required/>
+                                                                        <textarea type="text" class="form-control" id="threadBody" placeholder="Thread Description" name="threadBody" required></textarea>
                                                                     </div>
 
                                                                     <div class="row justify-content-md-center">
@@ -442,7 +443,7 @@
                                                                     <div class="col-sm-3">
                                                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                                                     </div>
-                                                                </div>
+                                                                
                                                             </form>
                                                             @endif
                                                           

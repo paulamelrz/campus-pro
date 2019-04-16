@@ -28,6 +28,14 @@ class Channel extends Model
     public function enrollment(){
         return $this->hasMany('App\Enrollment');
     }
+
+    public function tutorThreads(){
+        return $this->hasMany('App\DiscussionThread_tutor');
+    }
+
+    public function stuThreads(){
+        return $this->hasMany('App\DiscussionThread');
+    }
     
 
 }
