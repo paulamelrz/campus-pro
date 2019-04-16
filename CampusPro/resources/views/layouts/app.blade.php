@@ -62,11 +62,13 @@
                         </li>
                         
                         <li class="nav-item">
-                        @if(Auth::guard('web'))
-                            <a class="nav-link navlink scroll" href="/stuChannels">Channels</a>
-                        @elseif(Auth::guest())
+                        
+                        @guest
                         <a class="nav-link navlink scroll" href="/channels">Channels</a>
-                        @endif
+                        @elseif(Auth::guard('web'))
+                            <a class="nav-link navlink scroll" href="/stuChannels">Channels</a>
+                         
+                        @endguest
                         </li>
                         <li class="nav-item">
                             <a class="nav-link navlink scroll" href="index.php?controller=Tutors">Tutors</a>
