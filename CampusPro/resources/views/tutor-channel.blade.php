@@ -257,7 +257,7 @@
                                                     $upload_title = str_replace("_", " ", $topic_upload->filename);
                                                     ?>
 
-                                                    {{print "Title: " . $upload_title}}
+                                                    {{"Title: " . $upload_title}}
 
                                                    <br><br>
 
@@ -275,7 +275,7 @@
                                                        $upload_title = str_replace("_", " ", $topic_upload->filename);
                                                        ?>
 
-                                                       {{print "Title: " . $upload_title}}
+                                                       {{"Title: " . $upload_title}}
 
                                                        <br><br>
 
@@ -293,7 +293,7 @@
                                                        $upload_title = str_replace("_", " ", $topic_upload->filename);
                                                        ?>
 
-                                                       {{print "Title: " . $upload_title}}
+                                                       {{"Title: " . $upload_title}}
 
                                                        <br><br>
 

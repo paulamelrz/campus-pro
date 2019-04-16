@@ -15,7 +15,7 @@ class CreateDiscussionThreadTutorsTable extends Migration
     {
         Schema::create('discussion_thread_tutors', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('student_id');
+            $table->unsignedInteger('tutor_id');
             $table->unsignedInteger('channel_id');
             $table->unsignedInteger('replies_count')->default(0);
             $table->string('title');
@@ -28,6 +28,14 @@ class CreateDiscussionThreadTutorsTable extends Migration
                 ->references('id')
                 ->on('discussion_replies_tutors')
                 ->onDelete('set null');
+            $table->foreign('tutor_id')
+                ->references('id')
+                ->on('tutors')
+                ->onDelete('cascade');
+            $table->foreign('channel_id')
+                ->references('id')
+                ->on('channels')
+                ->onDelete('cascade');
         });
     }
 

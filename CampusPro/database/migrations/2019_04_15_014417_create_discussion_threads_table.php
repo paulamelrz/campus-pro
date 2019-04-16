@@ -28,6 +28,14 @@ class CreateDiscussionThreadsTable extends Migration
                 ->references('id')
                 ->on('discussion_replies')
                 ->onDelete('set null');
+            $table->foreign('student_id')
+                ->references('id')
+                ->on('students')
+                ->onDelete('cascade');
+            $table->foreign('channel_id')
+                ->references('id')
+                ->on('channels')
+                ->onDelete('cascade');
         });
     }
 
