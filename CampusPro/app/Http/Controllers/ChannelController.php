@@ -12,6 +12,7 @@ use App\University;
 use App\TopicUpload;
 use App\Enrollment;
 use App\Tutor;
+use App\ChannelReview;
 use Auth;
 use Carbon\Carbon;
 class ChannelController extends Controller
@@ -92,6 +93,7 @@ class ChannelController extends Controller
     
     public function channelPage($id) //displays channel page 
     {
+        $reviews = ChannelReview::where('channels_id', $id)->get();
         $stu_threads = DiscussionThread::where('channel_id', $id)->get();
         $tutor_threads = DiscussionThread_tutor::where('channel_id', $id)->get();
         $topic_uploads = TopicUpload::all();
@@ -102,7 +104,7 @@ class ChannelController extends Controller
         $channel_rec = Channel::where('channel_id', $id)->first();
         $enrollments= Enrollment::where('channels_id', $id)->get();
 
-        return view('/tutor-channel', compact('channel_rec', 'topics', 'enrollments','topic_uploads', 'owner', 'enrolled', 'tutor_threads', 'stu_threads'));
+        return view('/tutor-channel', compact('channel_rec', 'topics', 'enrollments','topic_uploads', 'owner', 'enrolled', 'tutor_threads', 'stu_threads', 'reviews'));
     }
     /**
      * Show the form for editing the specified resource.
