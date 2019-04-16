@@ -365,7 +365,8 @@
                                     <div class="card-header addTopic">
                                         
                                             <button data-toggle="modal" data-target="#create-thread" class="btn btn-success" type="submit"> Create thread</button>
-                                @endif           
+                                    </div>
+                                @endif
                                             <!-- Create Thread modal-->
                                             <div class="modal fade chan-modal  mx-auto" id="create-thread">
                                                 <div class="modal-dialog  modal-dialog-centered modal-lg">
@@ -449,7 +450,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                    </div>      
+                                         
                             </div>
                         </div>
 
