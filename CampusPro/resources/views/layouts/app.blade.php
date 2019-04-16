@@ -64,8 +64,6 @@
                         <li class="nav-item">
                         @if(Auth::user())
                             <a class="nav-link navlink scroll" href="/stuChannels">Channels</a>
-                        @else
-                            <a class="nav-link navlink scroll" href="/channels">Channels</a>
                         @endif
                         </li>
                         <li class="nav-item">
