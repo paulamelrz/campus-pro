@@ -30,7 +30,9 @@ class Tutor extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+    public function topic_2(){
+        return $this->hasMany('App\DiscussionReplies');
+    }
     public function channel(){
         return $this->hasMany('App\Channel');
     }

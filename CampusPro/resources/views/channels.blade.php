@@ -35,11 +35,16 @@
                             @endforeach
                         </div>   
                         <br>
-                        @foreach($courses as $course)
-                            <h4>All Channels</h4>
+    <h4>All Channels</h4>
+    <br>
+                        @foreach($all_courses as $course)
+
+                        <h5>Course: {{$course->course_name}}</h5>
+
                             <div class="row">
+
                                 @foreach($all_channels as $channel)
-                                    @if($course->id = $channel->course_id)
+                                    @if($course->id == $channel->course_id)
                                         <div class="col-md-3">
                                             <div class="card mb-4">
                                                 <div class="img-box">
@@ -61,10 +66,13 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    @else
+
                                     @endif
                                 @endforeach
-                            @endforeach
-                        </div>       
+                            </div>
+                        @endforeach
+
                 
 @endsection
 
