@@ -91,8 +91,6 @@ $(document).ready(function(){
             @foreach($channels as $channel)
                 @foreach($channel as $channel_rec)
                 
-                 @foreach($channel_rec as $ch)
-                 
                 <div class="col-md-4  mx-auto" style="padding-top:20px;">
 
                     <div class="card">
@@ -100,10 +98,10 @@ $(document).ready(function(){
                     <img class="card-img-top" src="images/thumbnail.png" alt="channel thumbnail">
                         <div class="card-body">
                             <div class="card-title">
-                                <a href="{{route('channel.page', $channel->channel_id)}}">{{$ch->channel_name}}</a>
+                                <a href="{{route('channel.page', $channel_rec->channel_id)}}">{{$channel_rec->channel_name}}</a>
                         </div>
                             <div class="card-text">
-                                <p>{{$ch->description}}</p>
+                                <p>{{$channel_rec->description}}</p>
                             </div>
                         </div>
 
@@ -112,8 +110,7 @@ $(document).ready(function(){
                         </div>
                     </div>
                 </div>  
-                
-                @endforeach
+
                 @endforeach         
             @endforeach
          @else
