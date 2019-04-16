@@ -338,13 +338,13 @@
                     4. Tutors can remove any posts.
 
                     -->
+                    <img src="{{asset('/images/giphy.gif')}}">
                 </div>
 
                 <!-- Dicussions Tab -->
                 <div id="discussions" class="container tab-pane fade">
                  <br>
 
-                    <img src="{{asset('/images/giphy.gif')}}">
                     <!--
                         1. Forum threads (topics) -> both students and tutors can create a thread
                         2. Forum posts + comments under each
