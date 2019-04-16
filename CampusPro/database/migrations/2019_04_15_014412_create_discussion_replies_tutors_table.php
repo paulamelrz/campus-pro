@@ -15,16 +15,17 @@ class CreateDiscussionRepliesTutorsTable extends Migration
     {
         Schema::create('discussion_replies_tutors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('thread_id');
-            $table->integer('tutor_id');
+            $table->unsignedbigInteger('thread_id');
+            $table->unsignedInteger('tutor_id');
             $table->text('body');
             $table->timestamps();
 
             $table->foreign('thread_id')->references('id')->on('discussion_thread_tutors')->onDelete('cascade');
+            $table->foreign('tutor_id')->references('id')->on('tutors')->onDelete('cascade');
+
 
         });
     }
-
     /**
      * Reverse the migrations.
      *

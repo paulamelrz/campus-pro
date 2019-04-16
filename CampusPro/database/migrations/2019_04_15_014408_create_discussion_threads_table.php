@@ -20,11 +20,9 @@ class CreateDiscussionThreadsTable extends Migration
                 $table->unsignedInteger('replies_count')->default(0);
                 $table->string('title');
                 $table->text('body');
-                $table->unsignedInteger('best_reply_id')->nullable();
                 $table->boolean('flag')->default(false);
                 $table->timestamps();
 
-                $table->foreign('best_reply_id')->references('id')->on('discussion_replies')->onDelete('set null');
 
                 $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
 
