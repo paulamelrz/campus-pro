@@ -84,9 +84,7 @@
           <li class="nav-item active">
                 <a class="nav-link scroll" data-toggle="tab" href="#content">Content</a>
           </li>
-          <li class="nav-item">
-                <a class="nav-link scroll" data-toggle="tab" href="#tutorials">Tutorials Feed</a>
-          </li>
+
           <li class="nav-item">
              <a class="nav-link scroll" data-toggle="tab" href="#resource">Resource Hub</a>
           </li>
@@ -113,7 +111,7 @@
                     -->
                     <div class="row">
                         
-                    <!-- Topics sidebar -->
+                     <!-- Topics sidebar -->
                         <div class="col-md-3">
                             <div class="card mb-2">
                                 <div style="color:white;" class="card-header bg-dark">
@@ -355,7 +353,7 @@
                                 <div style="color:white;" class="card-header bg-dark">
                                     <h5>Tutor Threads</h5>
                                 </div>
-                                @if(isset ($tutor_threads) )
+                                @if($tutor_threads!=NULL)
                                     @foreach($tutor_threads as $tut_thread)
                                         <div class="card-header topics">
                                             <a class="card-link" href="#thread{{$tut_thread->id}}">{{$tut_thread->title}}</a>
@@ -363,9 +361,9 @@
                                     @endforeach
                                 @endif                                       
                                 @if(Auth::guard('tutor')->check())
-                                    <div class="card-header addTopic">
+                                    <div class="card-header addThread">
                                         
-                                            <button data-toggle="modal" data-target="#create-thread" class="btn btn-success" type="submit"> Create thread</button>
+                                        <button data-toggle="modal" data-target="#create-thread" class="btn btn-success" type="submit"> Create thread</button>
                                     </div>
                                 @endif
                                             <!-- Create Thread modal-->
@@ -436,14 +434,14 @@
                                                                     </div>
 
                                                                     <div class="row justify-content-md-center">
-                                                                    <div class="col-sm-3">
-                                                                    <input type="submit" class="btn" style="background-color:#2DC7B2 !important; color:white;" value="Submit"/>
-                                                                    </div>
+                                                                        <div class="col-sm-3">
+                                                                        <input type="submit" class="btn" style="background-color:#2DC7B2 !important; color:white;" value="Submit"/>
+                                                                        </div>
 
-                                                                    <div class="col-sm-3">
-                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                        <div class="col-sm-3">
+                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                                        </div>
                                                                     </div>
-                                                                
                                                             </form>
                                                             @endif
                                                           
@@ -453,6 +451,9 @@
                                             </div>
                                          
                             </div>
+                            <div class="card">
+                            </div>
+
                         </div>
 
                         <!-- Discussion Content -->

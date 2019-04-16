@@ -1,11 +1,22 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
+use App\DiscussionThread_tutor;
+use App\DiscussionThread;
 use Illuminate\Http\Request;
 
 class DiscussionController extends Controller
 {
+    protected function validator(array $data)
+    {
+        // return Validator::make($data, [
+        //     'channel_name' => ['required', 'string', 'max:191'],
+        //     'course_code' =>['required', 'string', 'max:191'],
+        //     'university'=>['required', 'string', 'max:70'],
+        //     'description' => ['string', 'max:255']
+        // ]);
+    }
 
     public function __construct()
     {
@@ -39,7 +50,26 @@ class DiscussionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate
+        //store tutor thread if tutor is logged in
+        if(Auth::guard('tutor')){
+            DiscussionThread_tutor::create([
+                'student_id'=> Auth::user()->id,
+                'channel_id'=> $request['channelId'],
+                'title'=> $request['threadTitle'],
+                'body'=> $request['threadBody']
+            ]);
+        }
+        //store student thread if student is logged in
+        elseif(Auth::guard('web')){
+            DiscussionThread::create([
+                'student_id'=> Auth::user()->id,
+                'channel_id'=> $request['channelId'],
+                'title'=> $request['threadTitle'],
+                'body'=> $request['threadBody']
+            ]);
+        }
+        return redirect()->back()->with('thread-success', 'New thread created successfully!');
     }
 
     /**

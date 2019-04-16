@@ -101,7 +101,7 @@ class ChannelController extends Controller
         $channel_rec = Channel::where('channel_id', $id)->first();
         $enrollments= Enrollment::where('channels_id', $id)->get();
 
-        return view('/tutor-channel', compact('channel_rec', 'topics', 'enrollments','topic_uploads', 'owner', 'enrolled'));
+        return view('/tutor-channel', compact('channel_rec', 'topics', 'enrollments','topic_uploads', 'owner', 'enrolled', 'tutor_threads', 'stu_threads'));
     }
     /**
      * Show the form for editing the specified resource.
