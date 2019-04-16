@@ -81,8 +81,8 @@ class TopicUploadController extends Controller
         /**
          * @var UploadedFile
          */
-            $file = $request->file('file');
-            $name = $request->file('file')->getClientOriginalName();
+            $file = $request->file('file'.$id);
+            $name = $request->file('file'.$id)->getClientOriginalName();
             $name = str_replace(' ', '_', $name);
             $stored_name = "topic_".$id."_file_" . $name;
             $path = "..\\..\\Topic_File_Upload\\topic_".$id."_file_" . $name;
