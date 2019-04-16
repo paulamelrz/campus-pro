@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChannelReview extends Model
 {
-    use Rateable;
-    
+
     public $table='channel_reviews';
 
     public $fillable = ['channels_id', 'stu_id', 'title', 'comment', 'stars', 'likes'];

@@ -343,11 +343,14 @@
                 <!-- Dicussions Tab -->
                 <div id="discussions" class="container tab-pane fade">
                  <br>
+
+                    <img src="{{asset('/images/giphy.gif')}}">
                     <!--
                         1. Forum threads (topics) -> both students and tutors can create a thread
                         2. Forum posts + comments under each
                         3. Student can like or flag
                         4. Tutor can like, flag, remove any comment
+
 
                     -->
                     <div class="row">
