@@ -9,9 +9,9 @@
         <h1 class="row1-head">Find help with your courses</h1>
             <p class="row1-text">Having difficulty finding assitance related to your course?<br>
             You may find tutors for that course below! Give it a try.</p>
-            
-            <button type="button" class="row1-button" href="Courses.html">View Courses</button> <br>
-            <button type="button" class="row1-button" href="Courses.html">Register Here</button>
+
+           <a href="/channels" style="text-decoration:none;"> <button type="button" class="row1-button" style="margin-bottom:5px">View Courses</button></a> 
+           <a href="/student" style="text-decoration:none;"> <button type="button" class="row1-button" href="/student">Register Here</button></a>
         </div>
 
         
