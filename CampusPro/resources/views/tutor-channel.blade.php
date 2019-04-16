@@ -176,8 +176,10 @@
 
                                                 <div class="form-group">
                                                     <div class="input-group">  
-                                                        {!! Form::file('file', array('class' => 'choosefile','name' => 'file','id'=>'file')) !!}
-                                                        <label style="margin-top:15px !important;" title="Choose File" for="file"><i class="far fa-file-alt fa-2x" ></i></label>
+
+                                                        {!! Form::file('file', array('class' => 'choosefile','id'=>'file'.$topic->id)) !!}
+                                                        <label style="margin-top:15px !important;" data-toggle="tooltip" data-placement="bottom" title="Choose File" for="file"><i class="far fa-file-alt fa-2x" ></i></label>
+
                                                         <span class="input-group-btn" style="margin-top:20px;">
                                                             {!! Form::button('<i class="fas fa-upload fa-lg"></i>', ['class'=>'uploadpro', 'type'=>'submit']) !!}
                                                         </span>
@@ -340,7 +342,7 @@
 
                 <!-- Resource Hub Tab -->
                 <div id="resource" class="container tab-pane fade">
-                    <h4>Resource Hub</h4><br>
+                    
                     <!--
                     1. Students and tutors can make posts
                     2. Posts ordered by date(in a feed) and tags
@@ -348,7 +350,7 @@
                     4. Tutors can remove any posts.
 
                     -->
-                    <img src="{{asset('/images/giphy.gif')}}">
+                    <img src="{{asset('/images/giphy.gif')}}"><br><br>
                 </div>
 
                 <!-- Dicussions Tab -->
@@ -398,7 +400,7 @@
                                                         <div class="modal-body">
                                                             
                                                             @if(Auth::guard('web')->check())
-                                                                <form method="post" action="{{route('discussion_thread.store')}}">
+                                                                <form method="post" action="{{route('discussion_thread_tutors.store')}}">
                                                                     <!-- channel_id (hidden) + title + body of thread -->
                                                                     <div class="form-group">
                                                                         @csrf
@@ -466,8 +468,8 @@
                                 </div>
                                 @if($stu_threads!=NULL)
                                     @foreach($stu_threads as $thread)
-                                        <div class="card-header threads">
-                                            <a class="card-link" href="#thread{{$tut_thread->id}}">{{$thread->title}}</a>
+                                        <div class="card-header stu-threads">
+                                            <a class="card-link" href="#stu-thread{{$thread->id}}">{{$thread->title}}</a>
                                         </div>
                                     @endforeach
                                 @endif                                       
@@ -490,6 +492,20 @@
                                         </div>
                                         <div style="text-align:center!important;" class="card-body bg-white">
                                         <p>{{$tut_thread->body}}</p>
+                                        </div>
+                                        <div class="card-footer bg-white">
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            @foreach($stu_threads as $thread)
+                                <div id="stu-thread{{$thread->id}}" class="stu-thread-content">
+                                    <div class="card mb-2">
+                                        <div class="card-header">
+                                            <h4 style="text-align:center;">{{$thread->title}}</h4>
+                                        </div>
+                                        <div style="text-align:center!important;" class="card-body bg-white">
+                                        <p>{{$thread->body}}</p>
                                         </div>
                                         <div class="card-footer bg-white">
                                         </div>
@@ -707,6 +723,20 @@ $('.threads a').click(function(event) {
   
 });
     
+$('.stu-thread-content').not('#stu-thread1').css("display", "none");
+$('.stu-threads a').click(function(event) {
+  event.preventDefault();
+  
+  // Toggle active class on tab buttons
+  $(this).parent().addClass("current");
+  $(this).parent().siblings().removeClass("current");
+  
+  // display only active tab content
+  var activeTab = $(this).attr("href");
+  $('.stu-thread-content').not(activeTab).css("display","none");
+  $(activeTab).fadeIn();
+  
+});
 }); 
 </script>
 @endsection
