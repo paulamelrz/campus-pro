@@ -179,14 +179,62 @@
                                         <div class="col">
                                             @if(Auth::guard('tutor')->check())
 
-                                                <div class="addText" style="margin-top:10px;">
-                                                    <a style="color:white; display:block; width:50%;" class="btn btn-success addtext"><i class="fas fa-plus-circle"></i> Add Text</a>
-                                                    <form style="display:none;" type="text" method="put" action="">
-                                                        <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topic-text" required></textarea><br>
-                                                        <button id="save" type="submit" class="btn btn-success"> Save</button>
-                                                        <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
-                                                    </form>
-                                                </div>
+
+
+                                                    <div class="addText" style="margin-top:10px;">
+
+                                                        @if($topic->textarea == NULL)
+
+                                                        {!! Form::open(
+                                                            array(
+                                                                'method' => 'PUT',
+                                                                'route' => array('topics.update',$topic->id) ,
+                                                                'novalidate' => 'novalidate',
+                                                                ))
+                                                            !!}
+
+                                                            <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topicText" required></textarea><br>
+                                                            <button id="save" type="submit" class="btn btn-success"> Save</button>
+                                                            <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
+
+
+                                                        {!! Form::close() !!}
+
+                                                        @else
+
+                                                        <p>
+                                                            {{ $topic->textarea}}
+                                                            <br>
+                                                        </p>
+
+
+                                                            <button  data-toggle="modal" data-target="#edit" class="btn addchannel">
+                                                                <i class="fas fa-plus-circle"></i>Edit
+                                                            </button>
+
+                                                        <!-- Modal Body-->
+                                                            <div class="modal fade chan-modal  mx-auto" id="edit" style="margin: 0;top: 50%;">
+
+                                                                {!! Form::open(
+                                                            array(
+                                                                'method' => 'PUT',
+                                                                'route' => array('topics.update',$topic->id) ,
+                                                                'novalidate' => 'novalidate',
+                                                                ))
+                                                            !!}
+
+                                                                
+                                                                <textarea placeholder="Enter your text here" style="width:100%; height:50%;" name="topicText" required></textarea><br>
+                                                                <button id="save" type="submit" class="btn btn-success"> Save</button>
+                                                                <button id="cancelText" type="button" class="btn btn-secondary"> Cancel</button>
+
+
+                                                                {!! Form::close() !!}
+
+
+                                                            </div>
+                                                            @endif
+                                                    </div>
 
                                             @endif
                                         </div>
@@ -195,17 +243,7 @@
 
 
                                     <div class="card-body">
-                                        @if($topic->textarea != NULL)
 
-                                            <p value="{{$topic->textarea}}">{{$topic->textarea}}</p>
-
-                                            <p>{{$topic->textarea}}</p>
-
-                                            <button method="put" action="{{route('topics.update', $topic->id)}}" class="btn btn-secondary">
-                                                <i class="fas fa-edit"></i> Edit text
-                                            </button> 
-
-                                        @endif
 
                                         @foreach($topic_uploads as $topic_upload)
 
@@ -217,18 +255,51 @@
                                                        <source src="{{asset('Topic_File_Uploads/'.$topic_upload->filename)}}" type="video/ogg">
                                                        Your browser does not support the video tag.
                                                    </video>
-                                                    @endif
+                                                <?php
+                                                    $upload_title = str_replace("_", " ", $topic_upload->filename);
+                                                    ?>
+
+                                                    {{print "Title: " . $upload_title}}
+
+                                                   <br><br>
+
+                                                @endif
+
                                                    @if($topic_upload->extension == "mpga")
                                                        <audio width="480" height="360" preload="auto" controls>
                                                            <source src="{{asset('Topic_File_Uploads/'.$topic_upload->filename)}}" type="audio/mp3">
                                                            Your browser does not support the audio tag.
                                                        </audio>
+
+                                                       <br><br>
+
+                                                       <?php
+                                                       $upload_title = str_replace("_", " ", $topic_upload->filename);
+                                                       ?>
+
+                                                       {{print "Title: " . $upload_title}}
+
+                                                       <br><br>
+
+
                                                        <br>
                                                    @endif
                                                    @if($topic_upload->extension == "pdf")
                                                        <object data="{{asset('Topic_File_Uploads/'.$topic_upload->filename)}}" type="application/pdf" width="480" height="360">
                                                            <p>Alternative text - include a link <a href="{{print $topic_upload->src}}">to the PDF!</a></p>
                                                        </object>
+
+                                                       <br><br>
+
+                                                       <?php
+                                                       $upload_title = str_replace("_", " ", $topic_upload->filename);
+                                                       ?>
+
+                                                       {{print "Title: " . $upload_title}}
+
+                                                       <br><br>
+
+
                                                    @endif
                                                 @endif
                                         @endforeach

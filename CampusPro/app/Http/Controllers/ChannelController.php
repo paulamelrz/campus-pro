@@ -93,6 +93,7 @@ class ChannelController extends Controller
     {
      //   $stu_threads = DiscussionThread::where('channel_id', $id)->get();
      //   $tutor_threads = DiscussionThread_tutor::where('channel_id', $id)->get();
+
         $topic_uploads = TopicUpload::all();
         $tutId = Channel::where('channel_id', $id)->first();
         $owner = Tutor::where('id', $tutId->tutor_id)->first();

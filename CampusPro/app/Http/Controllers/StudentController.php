@@ -28,12 +28,15 @@ class StudentController extends Controller
     {
         $enrollments = Enrollment::where('stu_id', Auth::user()->id)->get();
         if(isset ($enrollments)){
+            $x = 0;
             foreach($enrollments as $enrollment)
             {
-           
-                $channels = Channel::where('channel_id', $enrollment->channels_id)->get();
-                return view('student', compact('enrollments', 'channels'));
+                
+                $channels[$x] = Channel::where('channel_id', $enrollment->channels_id)->get();
+                $x++;
             }
+            //dd($channels);
+            return view('student', compact('enrollments', 'channels'));
         }
         $channels=[];
         return view('student', compact('enrollments', 'channels'));
