@@ -82,28 +82,30 @@ class TopicUploadController extends Controller
          * @var UploadedFile
          */
 
-            //dd($request->file('file'));
 
-            $file = $request->file('file');
-            $name = $request->file('file')->getClientOriginalName();
-            $name = str_replace(' ', '_', $name);
-            $stored_name = "topic_".$id."_file_" . $name;
-            $path = "..\\..\\Topic_File_Upload\\topic_".$id."_file_" . $name;
-            $path = str_replace("\\", DIRECTORY_SEPARATOR, $path);
-            $size = Input::file('file')->getSize();
-            $ext = $request->file('file')->extension();
+        $file_id = 'file'.$id;
 
-            $file->storePubliclyAs('Topic_File_Uploads', "topic_".$id."_file_" . $name, 'public');
 
-            \DB::table('topic_uploads')->insert(
-                ['filename' => $stored_name,
-                    'src' => $path,
-                    'size' => $size,
-                    'topic_id' => $id,
-                    'extension' => $ext,
-                ]);
+        $file = $request->file($file_id);
+        $name = $request->file($file_id)->getClientOriginalName();
+        $name = str_replace(' ', '_', $name);
+        $stored_name = "topic_".$id."_file_" . $name;
+        $path = "..\\..\\Topic_File_Upload\\topic_".$id."_file_" . $name;
+        $path = str_replace("\\", DIRECTORY_SEPARATOR, $path);
+        $size = Input::file($file_id)->getSize();
+        $ext = $request->file($file_id)->extension();
 
-            return back();
+        $file->storePubliclyAs('Topic_File_Uploads', "topic_".$id."_file_" . $name, 'public');
+
+        \DB::table('topic_uploads')->insert(
+            ['filename' => $stored_name,
+                'src' => $path,
+                'size' => $size,
+                'topic_id' => $id,
+                'extension' => $ext,
+            ]);
+
+        return back();
     }
 
     /**

@@ -167,17 +167,18 @@
                                                 <div class="form-group">
                                                     <div class="input-group">
 
-                                                        {!! Form::file('file', array('class'=> 'choosefile', 'id' => 'file')); !!}
-                                                        <label style="margin-top:15px !important;" title="Choose File" for="file"><i class="far fa-file-alt fa-2x" ></i></label>
-                                                        <span class="input-group-btn" style="margin-top:20px;">
-                                                            {!! Form::button('<i class="fas fa-upload fa-lg"></i>', ['class'=>'uploadpro', 'type'=>'submit']) !!}
+                                                        <input type="file" id="file" name="file{{$topic->id}}" >
+                                                      <!--  <label style="margin-top:15px !important;" title="Choose File" for="file"><i class="far fa-file-alt fa-2x" ></i></label>
+                                                        <span class="input-group-btn" style="margin-top:20px;"> -->
+                                                            {!! Form::button('<i class="fas fa-upload fa-lg"></i>', [ 'type'=>'submit']) !!}
                                                         </span>
                                                     </div>
                                                 </div>
                                                 {!! Form::close() !!}
                                             </div>
+
                                         @endif
-                                        <div class="col">
+                                        <div class="col-sm-6 offset-sm-3">
                                         @if($topic->textarea != NULL)
 
                                             <p>
