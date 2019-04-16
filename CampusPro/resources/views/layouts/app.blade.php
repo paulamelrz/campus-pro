@@ -68,7 +68,8 @@
                         <a class="nav-link navlink scroll" href="/channels">Channels</a>
                         @elseif(Auth::guard('web'))
                             <a class="nav-link navlink scroll" href="/stuChannels">Channels</a>
-                         
+                        @elseif(Auth::guard('tutor'))
+                        <a></a> 
                         @endguest
                         </li>
                         <li class="nav-item">
