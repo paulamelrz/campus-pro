@@ -15,7 +15,7 @@
 <script>
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
-});
+}); 
 </script>
 
 @if (session('error')||session('success'))
@@ -62,6 +62,7 @@ $(document).ready(function(){
                     <button data-toggle="tooltip" data-placement="bottom" title="Upload image" type="submit" class="uploadpro"><i class="fas fa-upload fa-lg"></i></button>
                 </form>
 
+
         <h4 class="mb-3">{{Auth::user()->name}} @if(Auth::user()->verified == 1)<img src="images/verified.png" style="width:30px;">@endif</h4>
              
         @if(Auth::user()->university!= null)
@@ -72,7 +73,6 @@ $(document).ready(function(){
             <p><i class="fas fa-globe-americas"></i> {{Auth::user()->country}}</p>
         @endif
 
-        <p class="mb-4">One morning, when Gregor Samsa woke from troubled </p>
 
         <button class="btn btn-outline-dark btn-sm"><span class="fas fa-pencil-alt"></span> Edit Profile</button>
         </div>
