@@ -12,7 +12,7 @@ class ChannelReview extends Model
 
     public $fillable = ['channels_id', 'stu_id', 'title', 'comment', 'stars', 'likes'];
 
-    //relatinships
+    //relationships
     public function channel(){
         return $this->belongsTo('App\Channel');
     }

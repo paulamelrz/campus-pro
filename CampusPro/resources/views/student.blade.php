@@ -72,7 +72,7 @@ $(document).ready(function(){
             <p><i class="fas fa-globe-americas"></i> {{Auth::user()->country}}</p>
         @endif
 
-        <p class="mb-4">One morning, when Gregor Samsa woke from troubled </p>
+       
 
         <button class="btn btn-outline-dark btn-sm"><span class="fas fa-pencil-alt"></span> Edit Profile</button>
         </div>
